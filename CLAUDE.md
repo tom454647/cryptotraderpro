@@ -71,12 +71,55 @@ If any answer is ambiguous, halt and consult counsel before merging.
 - `.env.example` files at `apps/api/` and `apps/web/` are committed. Real `apps/api/.env` and `apps/web/.env.local` are git-ignored and live only on the operator's local disk.
 - Affiliate IDs already in production: Binance `376216722`, Bybit `AYOLGJP`, MEXC `mexc-3nPe1`
 
-## Brand & visual identity
+## Brand & visual identity — Vienna Editorial (binding)
 
-- **Brand:** CryptoTrader Pro. A mid-day rebrand to "Refract" on 2026-05-25 was tried and reverted within hours. Commit history shows it as `f09ea25 → ed356ab`. Treat that as documented exploration, not regression.
-- **Logo:** prism refracting one beam into four spectrum rays — `apps/web/components/brand-logo.tsx`. The metaphor visualises Universal-Aggregation: many sources, one clear view.
-- **Typography:** Geist sans + Geist Mono via `next/font/google`. Self-hosted, no CDN.
-- **Palette:** Tailwind v4 `@theme` tokens in `apps/web/app/globals.css` — dark-mode-first slate canvas + OKLCH spectrum (cyan → indigo → violet → magenta) used sparingly on logo, hero glow, wordmark accent.
+**Brand:** CryptoTrader Pro. A mid-day rebrand to "Refract" on 2026-05-25 was tried and reverted within hours. Commit history shows it as `f09ea25 → ed356ab`. Treat that as documented exploration, not regression.
+
+**Visual identity is non-negotiable.** The operator validated the editorial direction in commit `4bf18f5` after explicitly rejecting the earlier Geist+spectrum-gradient look as "AI-generated generic". Future sprints must extend this direction; not drift back toward Vercel-template SaaS aesthetics.
+
+### Direction: Vienna editorial, not Vercel-AI-SaaS
+
+| Layer | Decision | Lives in |
+|-------|----------|----------|
+| Display headline | **Instrument Serif** (italic available, used as a signature hook) | `apps/web/app/layout.tsx` via next/font/google |
+| Body sans | **Onest** (OFL, distinct from Geist/Inter shape) | same |
+| Mono / labels | **IBM Plex Mono** | same |
+| Canvas | Warm charcoal `oklch(0.13 0.012 50)` (brown undertone, NOT cold slate-950) | `globals.css` `--color-canvas` |
+| Text | Cream `oklch(0.95 0.014 70)` (a hair off pure white, reads like paper) | `--color-ink` |
+| Single saturated accent | **Burgundy** `oklch(0.48 0.14 25)` — used very sparingly on key CTAs + the headline italic span | `--color-accent` |
+| Spectrum (cyan→indigo→violet→magenta) | **Quoted exactly once**, inside the four refracted rays of the brand logo. Nowhere else. | `--logo-ray-1..4` in `globals.css` |
+
+### Hard rules — do not break without operator sign-off
+
+1. **No spectrum gradient on body text, headlines, or CTAs.** That single move is the most-overused AI-design tell. The Refract day used it; the editorial reset killed it. Only the logo rays carry it now, and that's the brand quote.
+2. **No "centred hero with two rounded-md buttons" trope.** Layouts are asymmetric — 8/4 magazine grid, left-aligned, with a mono editorial sidebar where appropriate.
+3. **No `rounded-full border px-3 py-1 uppercase tracking-widest` chips.** Use plain editorial labels in IBM Plex Mono ("VIENNA · EST. 2026 · ISSUE 01") — letterspacing 0.18em, no border.
+4. **No Lucide-icon decoration on the landing.** Numbering uses editorial style ("01 — Aggregation"), not icon-headed cards.
+5. **Geist is forbidden** as a brand surface font. Tooling configs and dev tools may use system mono.
+6. **Headlines are opinionated.** Not benefit-bullets, not "Your X, [gradient]Y[/gradient]" templates. Examples we like: "Read your crypto. We won't trade it for you." Examples we don't: "The best way to track your crypto."
+7. **The Vienna/OptiRisk persona is named** somewhere visible on every public page (footer minimum).
+8. **MiCAR-licence-free posture is named as the product**, not as a footnote. Header copy "We read. You decide. The licence-free posture is the product." captures the tone.
+
+### Reference comparators we aspire toward (not Vercel)
+
+- [Plain](https://plain.com) — single-accent editorial discipline
+- [Linear](https://linear.app) — dark editorial with restraint
+- [Fathom Analytics](https://usefathom.com) — strong typographic confidence
+- [Cron / Notion Calendar](https://cron.com) — Display-headline confidence
+
+### Reference comparators we explicitly reject
+
+- Default Vercel `v0` outputs
+- Cookie-cutter Tailwind starter "centred hero + gradient text + chip"
+- Cyan/indigo/violet/magenta as a body-text brand-statement
+
+### Pending visual refinements (backlog — fold into the named sprints)
+
+- [ ] Logo-rays monochrome variant — the four-colour spectrum is the last AI-tell on the page. Sprint 2.2 candidate.
+- [ ] Hero-side concrete asset (a small ASCII portfolio statement in IBM Plex Mono, or a thin line-graph) so the hero proves rather than asserts. Sprint 2.6 candidate.
+- [ ] Sign-in / sign-up — currently render the Supabase Auth-UI in its default indigo theme. Re-skin to burgundy + Instrument Serif heading. Sprint 2.2 or 2.5 candidate.
+- [ ] Dashboard-preview component on the landing — a real Editorial-styled portfolio-aggregation card as the hero proof. Sprint 3 deliverable once we have real aggregation data flowing.
+- [ ] Headlines + body copy are still placeholder. Operator will iterate copy separately. Don't lock the wording, lock the **structure** and **visual language**.
 
 ## Pending user actions (blocks Sprint 2)
 
