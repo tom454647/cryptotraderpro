@@ -1,0 +1,6 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Disallow phantom dependencies — every package must declare what it uses.
+strict-peer-dependencies: true

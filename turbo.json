@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env", "**/.env.*"],
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**"],
+      "env": [
+        "DATABASE_URL",
+        "REDIS_URL",
+        "NEXT_PUBLIC_*",
+        "CLERK_*",
+        "STRIPE_*",
+        "ALCHEMY_API_KEY",
+        "HELIUS_API_KEY",
+        "ZERION_API_KEY",
+        "COINGECKO_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "ENCRYPTION_KEY"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": []
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
