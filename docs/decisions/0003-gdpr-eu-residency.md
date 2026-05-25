@@ -5,13 +5,13 @@
 
 ## Context
 
-Refract's target customers include Austrian retail crypto investors and (especially) Steuerberater handling clients' crypto positions. For the Steuerberater segment, EU data residency is a hard requirement — they cannot recommend Refract to clients if user data sits on US servers under FISA-702.
+CryptoTrader Pro's target customers include Austrian retail crypto investors and (especially) Steuerberater handling clients' crypto positions. For the Steuerberater segment, EU data residency is a hard requirement — they cannot recommend CryptoTrader Pro to clients if user data sits on US servers under FISA-702.
 
 GDPR Schrems-II reality: even with Standard Contractual Clauses, US data transfers require a Transfer Impact Assessment and remain legally precarious. EU-residency-by-default sidesteps the whole conversation.
 
 ## Decision
 
-Every vendor in Refract's data path must store user data **only in the EU**, with no automatic backup or replication to US regions. Where a vendor doesn't offer that, we substitute.
+Every vendor in CryptoTrader Pro's data path must store user data **only in the EU**, with no automatic backup or replication to US regions. Where a vendor doesn't offer that, we substitute.
 
 | Vendor | Purpose | EU residency | Configured |
 |--------|---------|--------------|------------|

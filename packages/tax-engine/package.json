@@ -1,5 +1,5 @@
 {
-  "name": "@refract/tax-engine",
+  "name": "@cryptotrader/tax-engine",
   "version": "0.1.0",
   "private": true,
   "description": "FIFO tax engine with Austrian KESt rules (full implementation in Sprint 6)",

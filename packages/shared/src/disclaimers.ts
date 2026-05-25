@@ -5,27 +5,27 @@
  */
 
 export const MICAR_DISCLAIMER_LONG_DE =
-  'Die hier dargestellten Informationen stellen keine Anlageberatung dar. Refract ' +
+  'Die hier dargestellten Informationen stellen keine Anlageberatung dar. CryptoTrader Pro ' +
   'ist kein lizenzierter Crypto-Asset Service Provider gemäß MiCAR. Alle Handelsentscheidungen ' +
   'treffen Sie eigenverantwortlich auf der jeweiligen Exchange/Plattform Ihrer Wahl.';
 
 export const MICAR_DISCLAIMER_LONG_EN =
-  'The information presented here does not constitute investment advice. Refract is ' +
+  'The information presented here does not constitute investment advice. CryptoTrader Pro is ' +
   'not a licensed Crypto-Asset Service Provider under MiCAR. All trading decisions are made by ' +
   'you on the exchange or platform of your choice.';
 
 export const MICAR_DISCLAIMER_SHORT_DE =
-  'Keine Anlageberatung. Refract ist kein CASP gemäß MiCAR.';
+  'Keine Anlageberatung. CryptoTrader Pro ist kein CASP gemäß MiCAR.';
 
 export const MICAR_DISCLAIMER_SHORT_EN =
-  'Not investment advice. Refract is not a CASP under MiCAR.';
+  'Not investment advice. CryptoTrader Pro is not a CASP under MiCAR.';
 
 export const READ_ONLY_DISCLAIMER_DE =
   'Daten stammen aus öffentlichen Blockchain-Quellen und Exchange-APIs mit Read-Only-Berechtigung. ' +
-  'Refract nimmt keine Orders entgegen, leitet keine weiter und führt keine aus.';
+  'CryptoTrader Pro nimmt keine Orders entgegen, leitet keine weiter und führt keine aus.';
 
 export const AFFILIATE_DISCLAIMER_DE =
-  'Affiliate-Links. Refract erhält bei Käufen auf der verlinkten Plattform eine Provision, ' +
+  'Affiliate-Links. CryptoTrader Pro erhält bei Käufen auf der verlinkten Plattform eine Provision, ' +
   'ohne dass für Sie Mehrkosten entstehen.';
 
 export const TAX_ENGINE_DISCLAIMER_DE =

@@ -17,7 +17,7 @@ export class OrderExecutionBlockedException extends Error {
 
   constructor(method: string) {
     super(
-      `MiCAR compliance: Refract is a read-only information service ` +
+      `MiCAR compliance: CryptoTrader Pro is a read-only information service ` +
         `and does not execute orders on behalf of users. Blocked method: ${method}`,
     );
   }

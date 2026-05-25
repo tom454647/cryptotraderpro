@@ -1,6 +1,6 @@
-# Refract — Architecture Decisions for 10k+ Users
+# CryptoTrader Pro — Architecture Decisions for 10k+ Users
 
-> Companion to [BRIEFING.md](../BRIEFING.md). The briefing describes **what** Refract does; this file describes **how** the stack stays correct, fast, and cheap once we move past a handful of early users.
+> Companion to [BRIEFING.md](../BRIEFING.md). The briefing describes **what** CryptoTrader Pro does; this file describes **how** the stack stays correct, fast, and cheap once we move past a handful of early users.
 
 **Author:** Thomas + Claude · **Date:** 2026-05-25 · **Status:** Living document, edited per sprint.
 

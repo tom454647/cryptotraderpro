@@ -15,15 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Refract — Your crypto, refracted',
+  title: 'CryptoTrader Pro — Your crypto, in one view',
   description:
-    'Refract aggregates your wallets, exchanges, DeFi and NFTs into one clear view. Austrian tax-ready, MiCAR-compliant, read-only by design.',
-  metadataBase: new URL('https://refract.pro'),
+    'CryptoTrader Pro aggregates your wallets, exchanges, DeFi and NFTs into one clear view. Austrian tax-ready, MiCAR-compliant, read-only by design.',
+  metadataBase: new URL('https://cryptotraderpro.io'),
   openGraph: {
-    title: 'Refract — Your crypto, refracted',
+    title: 'CryptoTrader Pro — Your crypto, in one view',
     description: 'One clear view across every wallet, exchange, DeFi position and NFT.',
-    url: 'https://refract.pro',
-    siteName: 'Refract',
+    url: 'https://cryptotraderpro.io',
+    siteName: 'CryptoTrader Pro',
     locale: 'en',
     type: 'website',
   },

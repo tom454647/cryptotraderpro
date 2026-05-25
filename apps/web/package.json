@@ -1,8 +1,8 @@
 {
-  "name": "@refract/web",
+  "name": "@cryptotrader/web",
   "version": "0.1.0",
   "private": true,
-  "description": "Refract web app — Next.js 15 dashboard (refract.pro)",
+  "description": "CryptoTrader Pro web app — Next.js 15 dashboard (cryptotraderpro.io)",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev --port 3000",

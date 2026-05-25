@@ -8,7 +8,7 @@ export default function ImprintPage(): React.ReactElement {
         <p>Vienna, Austria</p>
       </div>
       <p className="mt-6 text-xs text-slate-500">
-        Phase 2 (post-€10k revenue): operations transfer to Refract GmbH/FlexCo, Vienna.
+        Phase 2 (post-€10k revenue): operations transfer to CryptoTrader Pro GmbH/FlexCo, Vienna.
       </p>
     </main>
   );

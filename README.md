@@ -1,12 +1,12 @@
-# Refract
+# CryptoTrader Pro
 
-> Your crypto, refracted. One clear view across every wallet, exchange, DeFi position and NFT — Austrian tax-ready, MiCAR-compliant, read-only by design.
+> One clear view across every wallet, exchange, DeFi position and NFT — Austrian tax-ready, MiCAR-compliant, read-only by design.
 
 **Status:** Pre-launch. Sprint 1 (Foundation) complete on branch `feat/monorepo-foundation`.
-**Brand:** Refract (rebranded from working title "CryptoTrader Pro" on 2026-05-25 — see [BRIEFING.md](./BRIEFING.md) for the original source-of-truth document.)
-**Operator:** OptiRisk Consulting e.U., Vienna (Phase 1) → Refract GmbH/FlexCo (Phase 2, post-€10k revenue).
+**Domain:** [cryptotraderpro.io](https://cryptotraderpro.io) (live legacy site under `apps/marketing`; Next.js dashboard will replace it post-launch).
+**Operator:** OptiRisk Consulting e.U., Vienna (Phase 1) → CryptoTrader Pro GmbH/FlexCo (Phase 2, post-€10k revenue).
 
-## Why Refract
+## Why CryptoTrader Pro
 
 The crypto-tracking market is fragmented:
 - **Debank/Zerion** show DeFi positions but miss CEX trades.
@@ -14,7 +14,7 @@ The crypto-tracking market is fragmented:
 - **Nansen** is power-user-only and US-priced.
 - All of them use the same generic tax export, none with Austrian Steuerberater-grade output.
 
-Refract refracts every source — CEX, DEX, DeFi, staking, LPs, NFTs — into one spectrum view, with four pillars no competitor combines:
+CryptoTrader Pro merges every source — CEX, DEX, DeFi, staking, LPs, NFTs — into a single view, with four pillars no competitor combines:
 
 | Pillar | What | Why it wins |
 |--------|------|-------------|
@@ -26,19 +26,20 @@ Refract refracts every source — CEX, DEX, DeFi, staking, LPs, NFTs — into on
 ## Monorepo layout
 
 ```
-refract/                          (folder named "cryptotrader-pro" on disk — historical, not renamed)
+cryptotrader-pro/
 ├── apps/
-│   ├── api/         @refract/api              NestJS 10 backend            (port 3001)
-│   ├── web/         @refract/web              Next.js 15 dashboard        (port 3000)
-│   └── marketing/   @refract/legacy-marketing Legacy Vite SPA on
-│                                              cryptotraderpro.io          (port 5173)
+│   ├── api/         @cryptotrader/api          NestJS 10 backend         (port 3001)
+│   ├── web/         @cryptotrader/web          Next.js 15 dashboard      (port 3000)
+│   └── marketing/   @cryptotrader/marketing    Live Vite SPA on
+│                                                cryptotraderpro.io       (port 5173)
 ├── packages/
-│   ├── shared/             @refract/shared             MiCAR disclaimers, tier pricing
-│   ├── tax-engine/         @refract/tax-engine         FIFO + Austrian KESt rules
-│   └── crypto-connectors/  @refract/crypto-connectors  Read-only adapters + order block
+│   ├── shared/             @cryptotrader/shared             MiCAR disclaimers, tier pricing
+│   ├── tax-engine/         @cryptotrader/tax-engine         FIFO + Austrian KESt rules
+│   └── crypto-connectors/  @cryptotrader/crypto-connectors  Read-only adapters + order block
 ├── docker-compose.yml      Postgres 16 + Redis 7
-├── BRIEFING.md             Original v2.0 briefing (historical, under former name)
-└── turbo.json
+├── BRIEFING.md             Source-of-truth (Code-Session-Briefing v2.0)
+├── docs/ARCHITECTURE.md    10 decision-records for 10k+ user scaling
+└── docs/decisions/         ADRs (auth, payments tax, GDPR, AI)
 ```
 
 ## Prerequisites
@@ -73,13 +74,11 @@ curl http://localhost:3001/health
 # → { "status": "ok", "db": "up", "redis": "up", "timestamp": "..." }
 ```
 
-## Brand assets
+## Brand & visual identity
 
-- Primary domain: `refract.pro`
-- App PWA: `refract.app`
-- Web3 identity: `refract.crypto` (Unstoppable Domains)
-- Legacy (sunset after launch): `cryptotraderpro.io` — 301-redirected to refract.pro when Refract goes live.
-- Visual identity: see [apps/web/app/globals.css](./apps/web/app/globals.css) — Spectrum gradient (Cyan → Indigo → Magenta), Geist sans + mono.
+- **Logo:** a prism refracting one beam into four spectrum rays — see [apps/web/components/brand-logo.tsx](./apps/web/components/brand-logo.tsx). The metaphor stands for the Universal-Aggregation pillar (many sources, one clear view).
+- **Typography:** Geist sans + Geist Mono via `next/font/google` — self-hosted, no CLS.
+- **Palette:** Tailwind v4 `@theme` tokens in [apps/web/app/globals.css](./apps/web/app/globals.css). Dark-mode-first slate canvas + four spectrum accents (cyan → indigo → violet → magenta).
 
 ## Compliance invariants
 
@@ -95,10 +94,10 @@ Load-bearing for the MiCAR information-service classification — do not weaken 
 
 | Sprint | Scope | Status |
 |--------|-------|--------|
-| 1 | Foundation — monorepo, NestJS skeleton, Next.js skeleton, Prisma schema, docker-compose, `/health` | code complete, verification pending |
-| 2 | Clerk auth, Stripe subscriptions (3 tiers), legal pages, terms-acceptance flow | pending |
+| 1 | Foundation — monorepo, NestJS skeleton, Next.js skeleton, Prisma schema, docker-compose, `/health` | ✅ verified |
+| 2 | Supabase Auth, Stripe subscriptions (3 tiers), legal pages, terms-acceptance flow | pending |
 | 3 | EVM wallet connector (Alchemy, 6 chains), portfolio view | pending |
-| 4 | Solana (Helius) + DeFi positions (Zerion) | pending |
+| 4 | Solana (Helius) + DeFi positions (Zerion) + NFT layer (Reservoir) | pending |
 | 5 | CEX connectors with `SafeExchangeClient` + order-block + read-only validation | pending |
 | 6 | Austrian tax engine (FIFO, KESt regime cutoffs, FinanzOnline export) | pending |
 | 7 | Bridge compare (Li.Fi), DCA planner, affiliate deeplinks | pending |

@@ -7,7 +7,7 @@
 
 ## Context
 
-Refract needs an authentication layer for Sprint 2. BRIEFING.md named Clerk. Cost projection at 10k MAU ≈ €200/mo with Clerk; at 50k MAU ≈ €1,000/mo. Compounding concern: user records live in Clerk's database, making future migration a multi-week project with a forced password-reset wave for every user.
+CryptoTrader Pro needs an authentication layer for Sprint 2. BRIEFING.md named Clerk. Cost projection at 10k MAU ≈ €200/mo with Clerk; at 50k MAU ≈ €1,000/mo. Compounding concern: user records live in Clerk's database, making future migration a multi-week project with a forced password-reset wave for every user.
 
 Two viable open-source-friendly alternatives:
 
@@ -26,7 +26,7 @@ The decisive factor: Sprint 2 complexity budget. Better Auth saves a vendor but 
 
 ## Decision
 
-Use **Supabase Auth** as Refract's authentication layer. Configure with:
+Use **Supabase Auth** as CryptoTrader Pro's authentication layer. Configure with:
 
 - **Region:** EU-Frankfurt (mandatory for GDPR — see ADR 0003).
 - **Mode:** Auth-only — we don't use Supabase's Postgres or Storage. Our database stays on Railway. Supabase JWTs are validated in NestJS via standard `jsonwebtoken` against Supabase's JWKS endpoint.
@@ -50,7 +50,7 @@ Use **Supabase Auth** as Refract's authentication layer. Configure with:
 ## Implementation notes for Sprint 2
 
 1. Supabase project created in EU-Frankfurt region. JWT secret + URL go into Railway env vars.
-2. `apps/web` uses `@supabase/ssr` + `@supabase/auth-ui-react` for the sign-in components. Theme matched to Refract's Spectrum palette.
+2. `apps/web` uses `@supabase/ssr` + `@supabase/auth-ui-react` for the sign-in components. Theme matched to CryptoTrader Pro's Spectrum palette.
 3. `apps/api` validates JWTs via a NestJS guard pulling Supabase JWKS. Token expiry honored, refresh via Supabase's client.
 4. Webhook endpoint `/api/webhooks/supabase`: `user.created` → upsert our `User` table; `user.updated` → propagate email/metadata; `user.deleted` → soft-delete + 30-day grace + hard-delete worker.
 5. 2FA enrollment hidden until tier upgrades past FREE — small UX tweak in the settings page.

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Refract">
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CryptoTrader Pro">
   <line x1="2" y1="32" x2="22" y2="32" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
   <polygon points="22,32 46,12 46,52" fill="none" stroke="#F8FAFC" stroke-width="2.5" stroke-linejoin="round"/>
   <line x1="46" y1="22" x2="62" y2="14" stroke="oklch(0.78 0.13 200)" stroke-width="3" stroke-linecap="round"/>

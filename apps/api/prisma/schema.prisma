@@ -1,6 +1,5 @@
-// Refract — Prisma schema
-// Source of truth: BRIEFING.md §5 (note: BRIEFING was authored under the
-// working title "CryptoTrader Pro" — product renamed to "Refract" on 2026-05-25)
+// CryptoTrader Pro — Prisma schema
+// Source of truth: BRIEFING.md §5
 //
 // Compliance invariants (do not weaken without legal review):
 // - Wallet.isWatchOnly is forced true on every write (read-only aggregation).
