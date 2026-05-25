@@ -5,12 +5,14 @@ packages:
 # Approved postinstall scripts (pnpm 11+ requires explicit allow-list).
 # Each entry is a legitimate dependency that ships native binaries or codegen.
 allowBuilds:
-  '@nestjs/core': true        # registers reflect-metadata
-  '@prisma/client': true      # generates Prisma Client into node_modules
-  '@prisma/engines': true     # downloads the query/migration engines
-  prisma: true                # Prisma CLI postinstall
-  sharp: true                 # Next.js image optimization (native libvips)
-  unrs-resolver: true         # rolldown-vite native resolver
+  '@nestjs/core': true # registers reflect-metadata
+  '@prisma/client': true # generates Prisma Client into node_modules
+  '@prisma/engines': true # downloads the query/migration engines
+  '@sentry/cli': true # uploads sourcemaps in CI; safe postinstall
+  core-js: false      # transitive polyfill — its postinstall is a donation banner, decline
+  prisma: true # Prisma CLI postinstall
+  sharp: true # Next.js image optimization (native libvips)
+  unrs-resolver: true # rolldown-vite native resolver
 
 # Disallow phantom dependencies — every package must declare what it uses.
 strict-peer-dependencies: true
