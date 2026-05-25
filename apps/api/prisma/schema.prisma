@@ -1,0 +1,266 @@
+// CryptoTrader Pro — Prisma schema
+// Source of truth: BRIEFING.md §5
+//
+// Compliance invariants (do not weaken without legal review):
+// - Wallet.isWatchOnly is forced true on every write (read-only aggregation).
+// - ExchangeAccount stores AES-256-GCM-encrypted credentials only; readOnlyVerifiedAt
+//   records when the key was last validated as read-only.
+
+generator client {
+  provider = "prisma-client-js"
+  // Prisma 7 is Rust-free; no more binaryTargets needed.
+}
+
+datasource db {
+  provider = "postgresql"
+  // Prisma 7: connection URL moved to prisma.config.ts; runtime uses
+  // the @prisma/adapter-pg driver adapter (see PrismaService).
+}
+
+// ============================================================================
+// Users & Subscriptions
+// ============================================================================
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  authProviderId String    @unique
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  taxResidency   String    @default("AT")
+  baseCurrency   String    @default("EUR")
+
+  acceptedTermsAt      DateTime?
+  acceptedTermsVersion String?
+
+  subscription      Subscription?
+  wallets           Wallet[]
+  exchanges         ExchangeAccount[]
+  alerts            Alert[]
+  journalEntries    JournalEntry[]
+  affiliateClicks   AffiliateClick[]
+}
+
+model Subscription {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeCustomerId     String   @unique
+  stripeSubscriptionId String   @unique
+  tier                 Tier
+  status               String
+  currentPeriodEnd     DateTime
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+enum Tier {
+  FREE
+  PRO
+  TRADER
+}
+
+// ============================================================================
+// Wallets (read-only public addresses)
+// ============================================================================
+
+model Wallet {
+  id           String     @id @default(cuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address      String
+  chain        Chain
+  label        String?
+  isWatchOnly  Boolean    @default(true)
+  positions    Position[]
+  createdAt    DateTime   @default(now())
+  lastSync     DateTime?
+
+  @@unique([userId, address, chain])
+  @@index([userId])
+}
+
+enum Chain {
+  ETHEREUM
+  BSC
+  POLYGON
+  ARBITRUM
+  OPTIMISM
+  BASE
+  SOLANA
+  AVALANCHE
+}
+
+// ============================================================================
+// Exchange accounts (read-only API keys)
+// ============================================================================
+
+model ExchangeAccount {
+  id                   String     @id @default(cuid())
+  userId               String
+  user                 User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exchange             Exchange
+  label                String
+  apiKeyEnc            String
+  apiSecretEnc         String
+  readOnlyVerifiedAt   DateTime
+  permissionScopes     String[]
+  lastSync             DateTime?
+  positions            Position[]
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+
+  @@index([userId])
+}
+
+enum Exchange {
+  BINANCE
+  BYBIT
+  KRAKEN
+  COINBASE
+  KUCOIN
+  BITPANDA
+  OKX
+}
+
+// ============================================================================
+// Positions (aggregated holdings from wallets + exchanges)
+// ============================================================================
+
+model Position {
+  id              String           @id @default(cuid())
+  walletId        String?
+  wallet          Wallet?          @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  exchangeId      String?
+  exchange        ExchangeAccount? @relation(fields: [exchangeId], references: [id], onDelete: Cascade)
+  asset           String
+  amount          Decimal          @db.Decimal(36, 18)
+  avgCostBasis    Decimal?         @db.Decimal(36, 8)
+  lastPriceEur    Decimal?         @db.Decimal(36, 8)
+  protocolType    ProtocolType?
+  protocol        String?
+  updatedAt       DateTime         @updatedAt
+
+  @@index([asset])
+  @@index([walletId])
+  @@index([exchangeId])
+}
+
+enum ProtocolType {
+  SPOT
+  LP
+  STAKED
+  LENT
+  BORROWED
+}
+
+// ============================================================================
+// Transactions (raw events imported from exchanges & on-chain)
+// ============================================================================
+
+model Transaction {
+  id        String    @id @default(cuid())
+  userId    String
+  source    String
+  txHash    String?
+  type      TxType
+  asset     String
+  amount    Decimal   @db.Decimal(36, 18)
+  priceEur  Decimal   @db.Decimal(36, 8)
+  feeEur    Decimal?  @db.Decimal(36, 8)
+  timestamp DateTime
+  raw       Json
+
+  @@index([userId, timestamp])
+  @@index([asset])
+}
+
+enum TxType {
+  BUY
+  SELL
+  TRANSFER_IN
+  TRANSFER_OUT
+  SWAP
+  STAKE_REWARD
+  AIRDROP
+  FEE
+}
+
+// ============================================================================
+// Tax lots (FIFO accounting per asset)
+// ============================================================================
+
+model TaxLot {
+  id                String    @id @default(cuid())
+  userId            String
+  asset             String
+  acquiredAt        DateTime
+  amount            Decimal   @db.Decimal(36, 18)
+  costBasisEur      Decimal   @db.Decimal(36, 8)
+  closedAt          DateTime?
+  closingPriceEur   Decimal?  @db.Decimal(36, 8)
+  realizedPnlEur    Decimal?  @db.Decimal(36, 8)
+  holdingDays       Int?
+
+  @@index([userId, asset, acquiredAt])
+}
+
+// ============================================================================
+// Alerts & Journal
+// ============================================================================
+
+model Alert {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      AlertType
+  config    Json
+  active    Boolean   @default(true)
+  channel   String    @default("email")
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+enum AlertType {
+  PRICE
+  WHALE_MOVE
+  KOL_MENTION
+  RUG_SIGNAL
+  BRIDGE_OPPORTUNITY
+  DCA_REMINDER
+}
+
+model JournalEntry {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  txId         String?
+  thesis       String?
+  emotion      String?
+  reviewedAt   DateTime?
+  reviewNotes  String?
+  outcome      String?
+  createdAt    DateTime  @default(now())
+
+  @@index([userId])
+}
+
+// ============================================================================
+// Affiliate click tracking
+// ============================================================================
+
+model AffiliateClick {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  partner   String
+  context   String
+  targetUrl String
+  asset     String?
+  clickedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([partner, clickedAt])
+}
