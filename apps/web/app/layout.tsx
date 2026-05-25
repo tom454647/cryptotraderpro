@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   title: 'Refract — Your crypto, refracted',
   description:
     'Refract aggregates your wallets, exchanges, DeFi and NFTs into one clear view. Austrian tax-ready, MiCAR-compliant, read-only by design.',
-  metadataBase: new URL('https://refract.fi'),
+  metadataBase: new URL('https://refract.pro'),
   openGraph: {
     title: 'Refract — Your crypto, refracted',
     description: 'One clear view across every wallet, exchange, DeFi position and NFT.',
-    url: 'https://refract.fi',
+    url: 'https://refract.pro',
     siteName: 'Refract',
     locale: 'en',
     type: 'website',

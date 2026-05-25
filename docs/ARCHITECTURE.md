@@ -187,14 +187,16 @@ The decisions below pre-empt all three. Each one names the sprint it lands in, s
 
 ---
 
-## 11. Open questions to resolve before Sprint 2
+## 11. Architecture decisions resolved before Sprint 2
 
-1. **Auth provider final?** ✅ **DECIDED 2026-05-25: Better Auth** (open-source, TypeScript-native, lives in our own Postgres, zero vendor lock-in, scales to any size for free). Overrides BRIEFING.md's Clerk default. Trade-off accepted: ~3-4h more UI work in Sprint 2 to build sign-in/sign-up components ourselves.
-2. **Stripe Tax** on or off? Saves us computing EU MOSS VAT but adds a per-transaction fee. Pending.
-3. **GDPR data residency** — EU-only data is the goal. Verify Sentry, PostHog, Stripe each have an EU-only or EU-resident option, or document the SCC + DPA. Pending.
-4. **AI provider lock-in** — Claude Haiku for the AI coach is the briefing default. Add an OpenAI fallback for resilience, or accept lock-in for predictability? Pending.
+All four open questions from the original draft are now answered. ADRs are in `docs/decisions/`.
 
-Each decided question gets a row in `docs/decisions/` as an ADR.
+| # | Question | Decision | ADR |
+|---|----------|----------|-----|
+| 1 | Auth provider | **Supabase Auth** (EU-Frankfurt, free to 50k MAU, prebuilt UI, JWT-standard, self-hostable escape) — supersedes Clerk default | [0001](decisions/0001-auth-supabase.md) |
+| 2 | Stripe Tax | **Automatic** — 0.5% fee accepted to skip the EU MOSS engineering | [0002](decisions/0002-stripe-tax-automatic.md) |
+| 3 | GDPR residency | **EU-only across every vendor** that handles personal data; LLM + on-chain providers receive only anonymized/public data | [0003](decisions/0003-gdpr-eu-residency.md) |
+| 4 | AI provider | **Claude-only** (Anthropic API is generally available, Haiku 4.5 pricing fits the cost model, multi-provider deferred) | [0004](decisions/0004-ai-claude-only.md) |
 
 ---
 

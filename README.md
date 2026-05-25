@@ -75,10 +75,10 @@ curl http://localhost:3001/health
 
 ## Brand assets
 
-- Primary domain: `refract.fi`
+- Primary domain: `refract.pro`
 - App PWA: `refract.app`
 - Web3 identity: `refract.crypto` (Unstoppable Domains)
-- Legacy (sunset after launch): `cryptotraderpro.io` — 301-redirected to refract.fi when Refract goes live.
+- Legacy (sunset after launch): `cryptotraderpro.io` — 301-redirected to refract.pro when Refract goes live.
 - Visual identity: see [apps/web/app/globals.css](./apps/web/app/globals.css) — Spectrum gradient (Cyan → Indigo → Magenta), Geist sans + mono.
 
 ## Compliance invariants

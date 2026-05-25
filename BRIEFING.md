@@ -1,6 +1,6 @@
 # CryptoTrader Pro — Code-Session-Briefing v2.0
 
-> **🔄 Rename-Notice (2026-05-25):** Das Produkt wurde von "CryptoTrader Pro" zu **Refract** rebrandet — der Trader-Bezug widersprach der MiCAR-konformen Read-Only-Positionierung. Dieses Briefing bleibt unter dem ursprünglichen Namen als historisches Source-of-Truth-Dokument bestehen. Alle Code- und UI-Texte verwenden ab 2026-05-25 "Refract". Domain-Strategie: `refract.fi` (primär), `refract.app` (PWA), `cryptotraderpro.io` läuft als Legacy weiter bis Launch und wird dann 301-redirected. Brand-Details siehe README.md.
+> **🔄 Rename-Notice (2026-05-25):** Das Produkt wurde von "CryptoTrader Pro" zu **Refract** rebrandet — der Trader-Bezug widersprach der MiCAR-konformen Read-Only-Positionierung. Dieses Briefing bleibt unter dem ursprünglichen Namen als historisches Source-of-Truth-Dokument bestehen. Alle Code- und UI-Texte verwenden ab 2026-05-25 "Refract". Domain: `refract.pro` (primär — von den Spectrum-/Refract-Domains die einzig verfügbare in der Crypto-Klasse). `cryptotraderpro.io` läuft als Legacy weiter bis Launch und wird dann 301-redirected. Brand-Details siehe README.md.
 
 **Autor:** Thomas, OptiRisk Consulting e.U.
 **Datum:** 15.05.2026
