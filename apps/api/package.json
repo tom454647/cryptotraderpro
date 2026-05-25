@@ -1,8 +1,8 @@
 {
-  "name": "@cryptotrader/api",
+  "name": "@refract/api",
   "version": "0.1.0",
   "private": true,
-  "description": "CryptoTrader Pro backend — NestJS API for read-only portfolio aggregation",
+  "description": "Refract backend — NestJS API for read-only crypto portfolio aggregation",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",

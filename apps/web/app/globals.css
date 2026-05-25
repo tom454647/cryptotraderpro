@@ -1,13 +1,89 @@
 @import 'tailwindcss';
 
+/*
+ * Refract — Visual Identity
+ * ============================================================================
+ * Brand: light refracting through a prism into a spectrum.
+ * Mood: clear, precise, neutral foundation with subtle spectral accent.
+ *
+ * Typography: Geist (sans) + Geist Mono — Vercel's open-source typeface.
+ *   Loaded via app/layout.tsx with next/font/google → zero CLS, self-hosted.
+ *
+ * Palette tokens follow Tailwind v4 `@theme` syntax — every utility class
+ * referencing a brand token (`bg-refract-cyan`, `text-spectrum-violet`)
+ * resolves through this block.
+ */
+
 @theme {
-  --color-brand-50: oklch(0.97 0.02 250);
-  --color-brand-500: oklch(0.62 0.18 250);
-  --color-brand-700: oklch(0.45 0.16 250);
-  --color-brand-900: oklch(0.28 0.1 250);
+  /* Sans + mono ship through next/font; CSS just references the variables. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Foundation — neutral slate, optimized for dark-mode-first product. */
+  --color-canvas: oklch(0.16 0.015 250);          /* deep slate-near-black */
+  --color-surface: oklch(0.22 0.018 250);         /* card surface */
+  --color-surface-elevated: oklch(0.28 0.02 250); /* hover, focus */
+  --color-border-subtle: oklch(0.32 0.022 250);
+  --color-border-strong: oklch(0.45 0.03 250);
+
+  --color-text-primary: oklch(0.97 0.005 250);
+  --color-text-secondary: oklch(0.78 0.015 250);
+  --color-text-muted: oklch(0.58 0.018 250);
+
+  /* The refraction spectrum — used sparingly: logo, hero glow, single CTAs.
+     Picked along an aesthetic-but-accessible arc (cyan → indigo → magenta). */
+  --color-refract-cyan: oklch(0.78 0.13 200);     /* #5BD9D2-ish */
+  --color-refract-indigo: oklch(0.62 0.18 268);   /* signature mid-tone */
+  --color-refract-violet: oklch(0.58 0.22 305);
+  --color-refract-magenta: oklch(0.66 0.24 340);
+
+  /* The signature gradient — used on the wordmark and the hero backlight. */
+  --gradient-spectrum: linear-gradient(
+    96deg,
+    var(--color-refract-cyan) 0%,
+    var(--color-refract-indigo) 38%,
+    var(--color-refract-violet) 68%,
+    var(--color-refract-magenta) 100%
+  );
+
+  /* Semantic accents — kept independent of the spectrum so signal stays clear. */
+  --color-success: oklch(0.72 0.16 145);
+  --color-warning: oklch(0.78 0.16 75);
+  --color-danger: oklch(0.65 0.22 25);
 }
 
 html,
 body {
-  @apply bg-slate-950 text-slate-100 antialiased;
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01', 'ss03';  /* Geist's tabular-friendly variants */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The hero backlight — a subtle, blurred slice of the spectrum behind H1.
+   Use as: <div class="refract-glow">…</div> wrapping the hero. */
+.refract-glow {
+  position: relative;
+  isolation: isolate;
+}
+.refract-glow::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10% auto -10%;
+  height: 380px;
+  background: var(--gradient-spectrum);
+  filter: blur(120px);
+  opacity: 0.18;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Wordmark — gradient-filled text used for the brand name in the hero only. */
+.wordmark-spectrum {
+  background: var(--gradient-spectrum);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

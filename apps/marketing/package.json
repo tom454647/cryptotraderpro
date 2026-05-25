@@ -1,9 +1,9 @@
 {
-  "name": "@cryptotrader/marketing",
+  "name": "@refract/legacy-marketing",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Public landing page and fee calculator — cryptotraderpro.io",
+  "description": "Legacy CryptoTrader Pro landing — kept live on cryptotraderpro.io until Refract launches, then 301-redirected to refract.fi",
   "scripts": {
     "dev": "vite --port 5173 --strictPort",
     "build": "vite build",

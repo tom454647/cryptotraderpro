@@ -1,0 +1,8 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Refract">
+  <line x1="2" y1="32" x2="22" y2="32" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="22,32 46,12 46,52" fill="none" stroke="#F8FAFC" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="46" y1="22" x2="62" y2="14" stroke="oklch(0.78 0.13 200)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="46" y1="29" x2="62" y2="26" stroke="oklch(0.62 0.18 268)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="46" y1="35" x2="62" y2="38" stroke="oklch(0.58 0.22 305)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="46" y1="42" x2="62" y2="50" stroke="oklch(0.66 0.24 340)" stroke-width="3" stroke-linecap="round"/>
+</svg>

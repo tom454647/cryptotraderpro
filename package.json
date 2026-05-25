@@ -1,8 +1,8 @@
 {
-  "name": "cryptotrader-pro",
+  "name": "refract",
   "version": "0.1.0",
   "private": true,
-  "description": "CryptoTrader Pro — MiCAR-licensing-free read-only crypto portfolio SaaS (Turborepo monorepo)",
+  "description": "Refract — MiCAR-licensing-free read-only crypto portfolio aggregation (Turborepo monorepo)",
   "author": "OptiRisk Consulting e.U.",
   "license": "UNLICENSED",
   "packageManager": "pnpm@11.3.0",

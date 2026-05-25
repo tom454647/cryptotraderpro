@@ -1,5 +1,5 @@
 {
-  "name": "@cryptotrader/crypto-connectors",
+  "name": "@refract/crypto-connectors",
   "version": "0.1.0",
   "private": true,
   "description": "Read-only CEX/DEX connectors with hard-coded order-execution block (MiCAR safeguard)",
