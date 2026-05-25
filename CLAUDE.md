@@ -41,13 +41,27 @@ Living in `docs/ARCHITECTURE.md` (10 hardening decisions for 10k+ users) + `docs
 | 0003 | **GDPR: EU-only data residency** for every vendor handling PII |
 | 0004 | **Claude-only LLM** (Haiku 4.5) — no multi-provider |
 
-## MiCAR compliance invariants (DO NOT WEAKEN without legal review)
+## MiCAR compliance — the load-bearing product constraint
+
+**Operator directive (2026-05-25, restated):** CryptoTrader Pro must operate **without any crypto-asset-service-provider license**, indefinitely. License-free operation is not a phase — it is a **product feature**. Every sprint, every feature, every UI string is evaluated against this constraint first; functionality second. If a feature cannot be built MiCAR-safely, it does not ship.
+
+### The five hard-coded invariants (DO NOT WEAKEN without legal review)
 
 1. `Wallet.isWatchOnly` is always `true` — enforced at write time
 2. `SafeExchangeClient` (Sprint 5) exposes only read methods; order methods throw `OrderExecutionBlockedException`
 3. Exchange API keys validated as read-only on add + re-validated every 7 days
-4. UI copy follows BRIEFING.md §3.3 — "Open in Binance" not "Trade now"
+4. UI copy follows BRIEFING.md §3.3 — "Open in Binance" not "Trade now", "Alert konfigurieren" not "Auto-Trade aktivieren"
 5. MiCAR disclaimer (see `packages/shared/src/disclaimers.ts`) is shown wherever portfolio or market data is rendered
+
+### Sprint acceptance test (every sprint, before merge)
+
+Before merging any sprint, the developer (or me) answers these out loud:
+
+- [ ] Does this sprint introduce any code path that could be construed as: (a) executing an order on behalf of a user, (b) receiving and transmitting an order, (c) personalised investment advice, (d) custody of crypto-assets, or (e) automated portfolio management?
+- [ ] Does the UI copy added in this sprint contain any imperative trade language ("buy", "sell now", "rebalance", "the best time")? Review with BRIEFING.md §3.3 forbidden-vs-allowed table.
+- [ ] Are all external exchange/wallet interactions strictly read-only and validated as such?
+
+If any answer is ambiguous, halt and consult counsel before merging.
 
 ## Conventions
 
