@@ -189,14 +189,12 @@ The decisions below pre-empt all three. Each one names the sprint it lands in, s
 
 ## 11. Open questions to resolve before Sprint 2
 
-These need a decision now, not later — Sprint 2 picks the wrong abstraction otherwise.
+1. **Auth provider final?** ✅ **DECIDED 2026-05-25: Better Auth** (open-source, TypeScript-native, lives in our own Postgres, zero vendor lock-in, scales to any size for free). Overrides BRIEFING.md's Clerk default. Trade-off accepted: ~3-4h more UI work in Sprint 2 to build sign-in/sign-up components ourselves.
+2. **Stripe Tax** on or off? Saves us computing EU MOSS VAT but adds a per-transaction fee. Pending.
+3. **GDPR data residency** — EU-only data is the goal. Verify Sentry, PostHog, Stripe each have an EU-only or EU-resident option, or document the SCC + DPA. Pending.
+4. **AI provider lock-in** — Claude Haiku for the AI coach is the briefing default. Add an OpenAI fallback for resilience, or accept lock-in for predictability? Pending.
 
-1. **Auth provider final?** Clerk (briefing default) or alternative (Auth0, Supabase Auth)? Clerk's pricing jumps at 10k MAU — needs a check.
-2. **Stripe Tax** on or off? Saves us computing EU MOSS VAT but adds a per-transaction fee.
-3. **GDPR data residency** — EU-only data is the goal. Verify Sentry, PostHog, Clerk, Stripe each have an EU-only or EU-resident option, or document the SCC + DPA.
-4. **AI provider lock-in** — Claude Haiku for the AI coach is the briefing default. Add an OpenAI fallback for resilience, or accept lock-in for predictability?
-
-Track each in `docs/decisions/` as ADRs once decided.
+Each decided question gets a row in `docs/decisions/` as an ADR.
 
 ---
 
