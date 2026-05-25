@@ -8,13 +8,14 @@
 //   records when the key was last validated as read-only.
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  provider = "prisma-client-js"
+  // Prisma 7 is Rust-free; no more binaryTargets needed.
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // Prisma 7: connection URL moved to prisma.config.ts; runtime uses
+  // the @prisma/adapter-pg driver adapter (see PrismaService).
 }
 
 // ============================================================================
