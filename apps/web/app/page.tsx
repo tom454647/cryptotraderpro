@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BrandLogo } from '@/components/brand-logo';
 import { PortfolioStatement } from '@/components/portfolio-statement';
 import { TrueCostTable } from '@/components/true-cost-table';
+import { PainAnswer } from '@/components/pain-answer';
 
 /**
  * Landing — editorial layout.
@@ -95,67 +96,30 @@ export default function HomePage(): React.ReactElement {
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
-        {/* 01 — True Cost: the original cryptotraderpro.io hook + lead USP. */}
-        <section className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
-          <article className="sm:col-span-5">
-            <p className="editorial-label">01 — True Cost</p>
-            <h2 className="display mt-3 text-4xl">
-              The fee they advertise
-              <br />
-              <em className="font-normal text-[var(--color-accent-bright)]">
-                isn&rsquo;t the fee you pay.
-              </em>
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              Every exchange quotes a headline trading fee. The real cost is fee plus the
-              hidden spread, network gas, and withdrawal. We compute what a trade actually
-              costs you — across exchanges — so &ldquo;0 % fee&rdquo; never fools you again.
-            </p>
-          </article>
-
-          {/* True-cost comparison — proof, not assertion. */}
-          <div className="overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:col-span-7">
-            <TrueCostTable />
-          </div>
-        </section>
+        {/* The manifesto — all six USPs as scene-pain → our-answer. */}
+        <PainAnswer />
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
-        {/* 02 — Aggregation: statement on the left this time, for rhythm. */}
-        <section className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
-          <div className="order-2 overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:order-1 sm:col-span-7">
-            <PortfolioStatement />
+        {/* Proof, not assertion — the two flagship assets side by side. */}
+        <section>
+          <p className="editorial-label">Proof, not promises</p>
+          <h2 className="display mt-6 text-4xl sm:text-5xl">What it actually looks like.</h2>
+
+          <div className="mt-12 grid gap-12 sm:grid-cols-2">
+            <div>
+              <p className="editorial-label">True cost, computed</p>
+              <div className="mt-4 overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5">
+                <TrueCostTable />
+              </div>
+            </div>
+            <div>
+              <p className="editorial-label">Everything, in one statement</p>
+              <div className="mt-4 overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5">
+                <PortfolioStatement />
+              </div>
+            </div>
           </div>
-          <article className="order-1 sm:order-2 sm:col-span-5">
-            <p className="editorial-label">02 — Aggregation</p>
-            <h2 className="display mt-3 text-4xl">Every layer, one EUR figure.</h2>
-            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              CEX trades, on-chain holdings, DeFi positions, staked LP, NFT floor — joined into
-              one daily EUR statement. The kind of thing a custodian used to print at month-end,
-              now generated for you nightly.
-            </p>
-          </article>
-        </section>
-
-        <hr className="my-24 border-t border-[var(--color-rule)]" />
-
-        <section className="grid gap-12 sm:grid-cols-2">
-          <article>
-            <p className="editorial-label">03 — Tax for Austria</p>
-            <h2 className="display mt-3 text-3xl">FIFO that an auditor accepts.</h2>
-            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              ÖkoStRefG-2022-konform. Altbestand-vs-Neubestand korrekt getrennt. Export für
-              FinanzOnline und für deinen Steuerberater.
-            </p>
-          </article>
-          <article>
-            <p className="editorial-label">04 — Active intelligence</p>
-            <h2 className="display mt-3 text-3xl">Signals on your holdings, not the market.</h2>
-            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              Whale moves, KOL sentiment, rug warnings — filtered down to the assets you actually
-              hold. The rest is noise.
-            </p>
-          </article>
         </section>
       </main>
 
