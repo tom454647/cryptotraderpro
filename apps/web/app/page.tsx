@@ -48,18 +48,17 @@ export default function HomePage(): React.ReactElement {
             <p className="editorial-label">Vienna · est. 2026 · Issue 01</p>
 
             <h1 className="display mt-8 text-6xl sm:text-7xl md:text-8xl">
-              Read your crypto.
+              Everything you hold.
               <br />
               <em className="font-normal text-[var(--color-accent-bright)]">
-                We won&rsquo;t trade it
-              </em>{' '}
-              for you.
+                Priced honestly. Taxed correctly.
+              </em>
             </h1>
 
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-              The true cost of every trade. An aggregated, read-only view of every wallet,
-              exchange, DeFi position and NFT you own. Tax-ready for Austria. No order
-              execution, no custody, no personalised advice — by design, not by promise.
+              Every wallet, exchange, DeFi position and NFT you own — aggregated read-only into
+              one EUR view, with the true cost of every trade and an Austrian-tax-ready FIFO
+              export. You keep every key; we never place a trade.
             </p>
 
             <div className="mt-12 flex flex-wrap items-center gap-6">
