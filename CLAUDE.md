@@ -8,12 +8,15 @@
 
 Live legacy site: [cryptotraderpro.io](https://cryptotraderpro.io) — fee calculator built on React 19 + Vite, lives in `apps/marketing/` and stays online. The Next.js dashboard in `apps/web/` will replace it post-launch.
 
-## The four USP pillars (all four must be served by every sprint)
+## The five USP pillars (all must be served across the product)
 
+0. **True Cost** ← the original cryptotraderpro.io hook + the lead USP (operator-confirmed 2026-05-25). The real cost of a trade is the advertised fee PLUS the hidden spread + network/gas + withdrawal. We compute what a trade actually costs across exchanges so "0% fee" never fools the user. **The fee engine already exists** — it's the legacy Vite calculator in `apps/marketing`. Sprint task: port that engine into apps/web as a live feature (currently the landing shows an illustrative ASCII proof in `components/true-cost-table.tsx`).
 1. **Austrian Tax Engine** — ÖkoStRefG-2022-konform FIFO, Altbestand-vs-Neubestand cutoff, FinanzOnline-export. Beats Koinly's generic output.
 2. **Universal Aggregation** — CEX + DEX + DeFi + Staking + LP + **NFT** in one EUR-denominated view. Briefing §14 originally excluded NFTs — operator override 2026-05-25 added them back.
 3. **Active Intelligence** — Whale-alerts filtered to held assets, KOL-sentiment, rug-warnings. Pro-active, not display-only.
 4. **AI Coach Trade Journal** — Claude Haiku reflects on user's own trade behavior (MiCAR-safe: reflection, not advice).
+
+Note: there is a *second* "True Cost" concept in BRIEFING §2 — a dashboard widget showing the user their share of OUR infrastructure costs. That's a trust feature, not the lead USP. Pillar 0 above is the exchange-fee calculator ("see what you really pay"), confirmed by the operator as the USP.
 
 ## Current state (2026-05-25)
 
