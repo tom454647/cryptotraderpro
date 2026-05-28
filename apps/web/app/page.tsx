@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import { BrandLogo } from '@/components/brand-logo';
 import { PortfolioStatement } from '@/components/portfolio-statement';
 import { TrueCostTable } from '@/components/true-cost-table';
 import { PainAnswer } from '@/components/pain-answer';
+import { HowItWorks } from '@/components/how-it-works';
+import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/site-footer';
 
 /**
  * Landing — editorial layout.
@@ -19,35 +21,14 @@ import { PainAnswer } from '@/components/pain-answer';
 export default function HomePage(): React.ReactElement {
   return (
     <>
-      <header className="border-b border-[var(--color-rule)] px-8 py-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <BrandLogo className="text-xl text-[var(--color-ink)]" />
-          <nav className="flex items-center gap-7 text-sm">
-            <Link href="/pricing" className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]">
-              Pricing
-            </Link>
-            <Link
-              href="/sign-in"
-              className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/sign-up"
-              className="rounded-sm border border-[var(--color-rule-strong)] px-3 py-1.5 text-[var(--color-ink)] hover:border-[var(--color-accent-bright)]"
-            >
-              Get access
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-6xl px-8 py-24 sm:py-32">
+      <main className="mx-auto max-w-6xl px-6 py-20 sm:px-8 sm:py-32">
         <div className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
           <div className="sm:col-span-7">
             <p className="editorial-label">Vienna · est. 2026 · Issue 01</p>
 
-            <h1 className="display mt-8 text-6xl sm:text-7xl md:text-8xl">
+            <h1 className="display mt-8 text-5xl sm:text-7xl md:text-8xl">
               Everything you hold.
               <br />
               <em className="font-normal text-[var(--color-accent-bright)]">
@@ -61,18 +42,18 @@ export default function HomePage(): React.ReactElement {
               accepts. The monitoring nightmare, over.
             </p>
 
-            <div className="mt-12 flex flex-wrap items-center gap-6">
+            <div className="mt-12 flex flex-wrap items-center gap-5">
               <Link
                 href="/sign-up"
-                className="border-b border-[var(--color-accent-bright)] pb-0.5 text-base text-[var(--color-ink)] hover:text-[var(--color-accent-bright)]"
+                className="rounded-sm bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:bg-[var(--color-accent-bright)]"
               >
-                Start a free account &rarr;
+                Start a free account
               </Link>
               <Link
                 href="/pricing"
-                className="border-b border-transparent pb-0.5 text-base text-[var(--color-ink-soft)] hover:border-[var(--color-rule-strong)] hover:text-[var(--color-ink)]"
+                className="border-b border-transparent px-1 pb-0.5 text-sm text-[var(--color-ink-soft)] hover:border-[var(--color-rule-strong)] hover:text-[var(--color-ink)]"
               >
-                See pricing
+                See pricing &rarr;
               </Link>
             </div>
           </div>
@@ -101,8 +82,13 @@ export default function HomePage(): React.ReactElement {
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
-        {/* The manifesto — all six USPs as scene-pain → our-answer. */}
+        {/* The manifesto — the five USPs as scene-pain → our-answer. */}
         <PainAnswer />
+
+        <hr className="my-24 border-t border-[var(--color-rule)]" />
+
+        {/* How it works — three steps between why and proof. */}
+        <HowItWorks />
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
@@ -126,18 +112,42 @@ export default function HomePage(): React.ReactElement {
             </div>
           </div>
         </section>
+
+        <hr className="my-24 border-t border-[var(--color-rule)]" />
+
+        {/* Final CTA — close the funnel for the convinced reader. */}
+        <section className="grid items-end gap-x-12 gap-y-10 sm:grid-cols-12">
+          <div className="sm:col-span-8">
+            <p className="editorial-label">Ready when you are</p>
+            <h2 className="display mt-6 text-5xl sm:text-6xl">
+              See your whole portfolio —{' '}
+              <em className="font-normal text-[var(--color-accent-bright)]">
+                and what it really costs you.
+              </em>
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-ink-soft)]">
+              Free to start, one wallet and one exchange. Upgrade when you want unlimited sources,
+              the Austrian tax export and the active-intelligence stack.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-5 sm:col-span-4 sm:justify-end">
+            <Link
+              href="/sign-up"
+              className="rounded-sm bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:bg-[var(--color-accent-bright)]"
+            >
+              Start a free account
+            </Link>
+            <Link
+              href="/pricing"
+              className="border-b border-transparent px-1 pb-0.5 text-sm text-[var(--color-ink-soft)] hover:border-[var(--color-rule-strong)] hover:text-[var(--color-ink)]"
+            >
+              See pricing &rarr;
+            </Link>
+          </div>
+        </section>
       </main>
 
-      <footer className="border-t border-[var(--color-rule)] px-8 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono">Built in Vienna, European Capital of Crypto.</p>
-          <nav className="flex gap-5">
-            <Link href="/legal/terms">Terms</Link>
-            <Link href="/legal/privacy">Privacy</Link>
-            <Link href="/legal/imprint">Imprint</Link>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

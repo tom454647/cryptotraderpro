@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { BrandLogo } from '@/components/brand-logo';
+import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/site-footer';
 import { TIER_LIMITS, TIER_PRICING_EUR, type Tier } from '@cryptotrader/shared';
 
 export const metadata: Metadata = {
@@ -59,32 +60,9 @@ function TierColumn({ tier, number, name, tagline }: TierCardProps) {
 export default function PricingPage() {
   return (
     <>
-      <header className="border-b border-[var(--color-rule)] px-8 py-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/" className="text-[var(--color-ink)]">
-            <BrandLogo className="text-xl" />
-          </Link>
-          <nav className="flex items-center gap-7 text-sm">
-            <Link href="/pricing" className="text-[var(--color-ink)]">
-              Pricing
-            </Link>
-            <Link
-              href="/sign-in"
-              className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/sign-up"
-              className="rounded-sm border border-[var(--color-rule-strong)] px-3 py-1.5 text-[var(--color-ink)] hover:border-[var(--color-accent-bright)]"
-            >
-              Get access
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-6xl px-8 py-20">
+      <main className="mx-auto max-w-6xl px-6 py-20 sm:px-8">
         <div className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
           <div className="sm:col-span-7">
             <p className="editorial-label">Issue 01 · Pricing</p>
@@ -163,17 +141,7 @@ export default function PricingPage() {
         </section>
       </main>
 
-      <footer className="border-t border-[var(--color-rule)] px-8 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono">Built in Vienna, European Capital of Crypto.</p>
-          <nav className="flex gap-5">
-            <Link href="/legal/terms">Terms</Link>
-            <Link href="/legal/privacy">Privacy</Link>
-            <Link href="/legal/imprint">Imprint</Link>
-            <Link href="/legal/affiliate-disclosure">Affiliate disclosure</Link>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
