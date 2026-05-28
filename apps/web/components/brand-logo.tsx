@@ -5,13 +5,17 @@ interface BrandLogoProps {
 
 /**
  * CryptoTrader Pro mark — a stylised prism refracting one incoming beam
- * into four spectrum rays. The spectrum stops live in globals.css as
- * --logo-ray-1..4; they are the ONE place where the original spectrum
- * gradient survives. Everywhere else the brand uses a single burgundy
- * accent (see the editorial-identity comment in globals.css).
+ * into four rays.
  *
- * The wordmark is in Instrument Serif Italic — distinct, editorial,
- * unmistakably not Geist.
+ * The rays were originally drawn in the four spectrum stops (cyan→indigo→
+ * violet→magenta) and that was the last AI-tell visible on the landing.
+ * 2026-05-25 operator decision: pull them monochrome to commit fully to the
+ * Vienna-editorial direction. The brand stays single-accent (burgundy) +
+ * cream throughout — no spectrum quote left in the surface.
+ *
+ * Both the prism stroke and the rays use currentColor, so the parent's
+ * text-* utility (e.g. text-[var(--color-ink)] in the header, text-
+ * [var(--color-accent)] for the burgundy-on-cream variant) cascades cleanly.
  */
 export function BrandLogo({
   className,
@@ -45,11 +49,13 @@ export function BrandLogo({
         strokeLinejoin="round"
       />
 
-      {/* Refracted rays — the one place spectrum stops are quoted */}
-      <line x1="46" y1="22" x2="68" y2="14" stroke="var(--logo-ray-1)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="46" y1="29" x2="68" y2="26" stroke="var(--logo-ray-2)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="46" y1="35" x2="68" y2="38" stroke="var(--logo-ray-3)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="46" y1="42" x2="68" y2="50" stroke="var(--logo-ray-4)" strokeWidth="2" strokeLinecap="round" />
+      {/* Refracted rays — monochrome, all in currentColor.
+          The spectrum stays a concept (one beam in, four out) — the visual
+          payoff is the geometry, not a rainbow. */}
+      <line x1="46" y1="22" x2="68" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="46" y1="29" x2="68" y2="26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="46" y1="35" x2="68" y2="38" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="46" y1="42" x2="68" y2="50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
 
       {showWordmark && (
         <text

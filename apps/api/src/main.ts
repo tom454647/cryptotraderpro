@@ -1,7 +1,12 @@
+// IMPORTANT: instrument.ts MUST be the first import — Sentry needs to wrap
+// Node's runtime before any other module is loaded.
+import './instrument';
+
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import * as Sentry from '@sentry/nestjs';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 
@@ -29,6 +34,10 @@ async function bootstrap(): Promise<void> {
 
   app.setGlobalPrefix('api', { exclude: ['health'] });
 
+  // Note: Sentry's NestJS error filter is registered as APP_FILTER inside
+  // AppModule (SentryGlobalFilter). No imperative setup needed here — the
+  // deprecated `setupNestErrorHandler` path is gone.
+
   const port = config.get<number>('PORT', 3001);
   await app.listen(port);
 
@@ -38,5 +47,7 @@ async function bootstrap(): Promise<void> {
 
 bootstrap().catch((err) => {
   Logger.error('Failed to bootstrap API', err, 'Bootstrap');
+  // Send the bootstrap failure to Sentry before exiting, if configured.
+  Sentry.captureException(err);
   process.exit(1);
 });

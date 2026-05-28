@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Instrument_Serif, IBM_Plex_Mono, Onest } from 'next/font/google';
+import { PostHogProvider } from '@/components/posthog-provider';
 import './globals.css';
 
 const instrumentSerif = Instrument_Serif({
@@ -51,7 +53,11 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${plexMono.variable} ${onest.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={null}>
+          <PostHogProvider>{children}</PostHogProvider>
+        </Suspense>
+      </body>
     </html>
   );
 }

@@ -87,11 +87,11 @@ If any answer is ambiguous, halt and consult counsel before merging.
 | Canvas | Warm charcoal `oklch(0.13 0.012 50)` (brown undertone, NOT cold slate-950) | `globals.css` `--color-canvas` |
 | Text | Cream `oklch(0.95 0.014 70)` (a hair off pure white, reads like paper) | `--color-ink` |
 | Single saturated accent | **Burgundy** `oklch(0.48 0.14 25)` — used very sparingly on key CTAs + the headline italic span | `--color-accent` |
-| Spectrum (cyan→indigo→violet→magenta) | **Quoted exactly once**, inside the four refracted rays of the brand logo. Nowhere else. | `--logo-ray-1..4` in `globals.css` |
+| Spectrum (cyan→indigo→violet→magenta) | **Retired entirely** as of 2026-05-25 (Sprint 2.2). The logo's rays are now monochrome currentColor. Tokens left commented in `globals.css` as historical reference. | n/a |
 
 ### Hard rules — do not break without operator sign-off
 
-1. **No spectrum gradient on body text, headlines, or CTAs.** That single move is the most-overused AI-design tell. The Refract day used it; the editorial reset killed it. Only the logo rays carry it now, and that's the brand quote.
+1. **No spectrum gradient anywhere.** That single move is the most-overused AI-design tell. The Refract day used it on body text; the editorial reset killed it there; Sprint 2.2 pulled the last remnant from the logo rays. The brand is single-accent (burgundy + cream + warm charcoal) — full stop.
 2. **No "centred hero with two rounded-md buttons" trope.** Layouts are asymmetric — 8/4 magazine grid, left-aligned, with a mono editorial sidebar where appropriate.
 3. **No `rounded-full border px-3 py-1 uppercase tracking-widest` chips.** Use plain editorial labels in IBM Plex Mono ("VIENNA · EST. 2026 · ISSUE 01") — letterspacing 0.18em, no border.
 4. **No Lucide-icon decoration on the landing.** Numbering uses editorial style ("01 — Aggregation"), not icon-headed cards.
@@ -115,7 +115,7 @@ If any answer is ambiguous, halt and consult counsel before merging.
 
 ### Pending visual refinements (backlog — fold into the named sprints)
 
-- [ ] Logo-rays monochrome variant — the four-colour spectrum is the last AI-tell on the page. Sprint 2.2 candidate.
+- [x] Logo-rays monochrome variant — ✅ shipped 2026-05-25 in Sprint 2.2 (commit pending). Spectrum tokens commented in globals.css for historical reference; rays now use currentColor.
 - [ ] Hero-side concrete asset (a small ASCII portfolio statement in IBM Plex Mono, or a thin line-graph) so the hero proves rather than asserts. Sprint 2.6 candidate.
 - [ ] Sign-in / sign-up — currently render the Supabase Auth-UI in its default indigo theme. Re-skin to burgundy + Instrument Serif heading. Sprint 2.2 or 2.5 candidate.
 - [ ] Dashboard-preview component on the landing — a real Editorial-styled portfolio-aggregation card as the hero proof. Sprint 3 deliverable once we have real aggregation data flowing.

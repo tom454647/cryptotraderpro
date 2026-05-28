@@ -42,12 +42,14 @@
   --color-accent: oklch(0.48 0.14 25);              /* burgundy 600-ish */
   --color-accent-bright: oklch(0.62 0.16 25);       /* hover state */
 
-  /* Logo-only spectrum stops — quoted from the original Refract concept,
-     used in exactly one place: the four refracted rays on the brand mark. */
-  --logo-ray-1: oklch(0.78 0.13 200);
-  --logo-ray-2: oklch(0.62 0.18 268);
-  --logo-ray-3: oklch(0.58 0.22 305);
-  --logo-ray-4: oklch(0.66 0.24 340);
+  /* The four spectrum stops the original Refract concept used inside the
+     logo rays. Retired 2026-05-25 — the logo is now monochrome so the brand
+     is fully single-accent. Kept here, commented, as the historical reference
+     in case we ever want to expose a "Spectrum Edition" colourway later. */
+  /* --logo-ray-1: oklch(0.78 0.13 200);
+     --logo-ray-2: oklch(0.62 0.18 268);
+     --logo-ray-3: oklch(0.58 0.22 305);
+     --logo-ray-4: oklch(0.66 0.24 340); */
 
   /* Semantic accents kept independent of the brand colour. */
   --color-success: oklch(0.66 0.13 145);
