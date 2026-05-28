@@ -18,6 +18,8 @@ Live legacy site: [cryptotraderpro.io](https://cryptotraderpro.io) — fee calcu
 
 Note: there is a *second* "True Cost" concept in BRIEFING §2 — a dashboard widget showing the user their share of OUR infrastructure costs. That's a trust feature, not the lead USP. Pillar 0 above is the exchange-fee calculator ("see what you really pay"), confirmed by the operator as the USP.
 
+**Read-only / MiCAR is NOT a customer-acquisition USP** (operator call 2026-05-28). It is the *business-model foundation* (licence-free operation) and a *trust signal*. On the landing it appears only as a small mono trust-closer line ("Read-only, always. Your keys never leave your hands"), never as a hero line or a pain-point in the manifesto. Do not promote "we can't trade / keep every key" to a headline pillar — customers don't shop for it; they shop for True Cost, Aggregation, Tax, Active Intelligence, AI Coach. Read-only earns trust once they're already interested.
+
 ## Current state (2026-05-25)
 
 - **Sprint 1 (Foundation) is code-complete and verified.** `pnpm install` succeeds, `pnpm db:up` brings Postgres+Redis up healthy, `prisma migrate dev` applies the init migration, NestJS boots on :3001, `GET /health` returns `{"status":"ok","db":"up","redis":"up"}`.

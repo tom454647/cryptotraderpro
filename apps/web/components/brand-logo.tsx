@@ -1,19 +1,16 @@
 interface BrandLogoProps {
   className?: string;       // sizes the wordmark via font-size (e.g. text-xl)
-  showWordmark?: boolean;   // kept for API compatibility; the logo IS the wordmark now
+  showWordmark?: boolean;   // kept for API compatibility; the logo IS the wordmark
 }
 
 /**
  * Brand = a pure typographic wordmark. No icon.
  *
- * Operator rejected the prism mark (read as a broom). For an editorial brand
- * the typeface IS the identity — like Stripe or Plain in their wordmark
- * phases. "CryptoTrader" in cream Instrument Serif, "Pro" as the burgundy
- * italic signature (the same italic-accent move used on the hero headline),
- * closed with a burgundy full stop like a newspaper masthead.
- *
- * Inherits text colour from the parent via currentColor on "CryptoTrader",
- * so it works on both dark canvas (cream) and any future light surface.
+ * "CryptoTrader Pro" set in Instrument Serif, inheriting the parent's text
+ * colour (cream on the dark canvas). The only accent is the closing full
+ * stop in burgundy — a quiet newspaper-masthead signature. "Pro" is NOT
+ * italicised and NOT colour-shifted (operator call): the wordmark reads as
+ * one clean unit, the red dot is the single signature mark.
  */
 export function BrandLogo({ className }: BrandLogoProps): React.ReactElement {
   return (
@@ -21,9 +18,7 @@ export function BrandLogo({ className }: BrandLogoProps): React.ReactElement {
       className={`font-display font-normal leading-none tracking-[-0.01em] ${className ?? ''}`}
       aria-label="CryptoTrader Pro"
     >
-      CryptoTrader{' '}
-      <em className="text-[var(--color-accent-bright)]">Pro</em>
-      <span className="text-[var(--color-accent-bright)]">.</span>
+      CryptoTrader Pro<span className="text-[var(--color-accent-bright)]">.</span>
     </span>
   );
 }

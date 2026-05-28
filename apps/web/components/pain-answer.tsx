@@ -45,12 +45,6 @@ const ROWS: Row[] = [
     answer: 'An AI coach that reflects your own behaviour back.',
     detail: 'Claude reads your trade history and asks the questions a good mentor would. A mirror, not advice.',
   },
-  {
-    n: '06',
-    pain: 'Every tracker wants your API keys, and you can never be fully sure it won’t trade or withdraw.',
-    answer: 'Read-only by design — enforced in code.',
-    detail: 'Order methods throw at the source. We could not place a trade for you even if we wanted to. That’s the product.',
-  },
 ];
 
 export function PainAnswer() {

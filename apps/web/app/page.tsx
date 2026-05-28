@@ -48,19 +48,17 @@ export default function HomePage(): React.ReactElement {
             <p className="editorial-label">Vienna · est. 2026 · Issue 01</p>
 
             <h1 className="display mt-8 text-6xl sm:text-7xl md:text-8xl">
-              See all of it.
+              Everything you hold.
               <br />
               <em className="font-normal text-[var(--color-accent-bright)]">
-                Know the real cost.
+                Priced honestly. Taxed correctly.
               </em>
-              <br />
-              Keep every key.
             </h1>
 
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-              CryptoTrader Pro pulls every wallet, exchange, chain, DeFi position and NFT into
-              one EUR view — with the true cost of every trade and Austrian-tax-ready FIFO.
-              Read-only at the code level. You aggregate and decide; we never place a trade.
+              Every wallet, exchange, chain, DeFi position and NFT you own — in one EUR view.
+              The true cost of every trade, compared across exchanges. Austrian tax an auditor
+              accepts. The monitoring nightmare, over.
             </p>
 
             <div className="mt-12 flex flex-wrap items-center gap-6">
@@ -80,24 +78,23 @@ export default function HomePage(): React.ReactElement {
           </div>
 
           <aside className="flex flex-col justify-center border-l border-[var(--color-rule)] pl-8 sm:col-span-5">
-            <p className="editorial-label">The principle</p>
+            <p className="editorial-label">Why us</p>
 
             <p className="display mt-6 text-2xl leading-snug text-[var(--color-ink)]">
-              Every other tracker eventually wants keys that can trade, buries the real fees, or
-              sells your attention.
+              The tax tools can&rsquo;t show your live portfolio. The DeFi dashboards can&rsquo;t
+              see your exchange trades. The fee comparators don&rsquo;t know what you hold.
             </p>
 
             <p className="mt-6 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              We took the opposite oath. Read-only, enforced in code. Honest about every cost.
-              Built for Austrian tax from day one — in the European capital of crypto.
+              CryptoTrader Pro is the first that does{' '}
+              <span className="text-[var(--color-ink)]">all of it at once</span> — the true cost
+              of every trade, every position in one EUR statement, and Austrian tax an auditor
+              accepts.
             </p>
 
-            <p className="mt-6 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              The only crypto cockpit{' '}
-              <span className="text-[var(--color-ink)]">
-                structurally incapable of moving your money.
-              </span>{' '}
-              That isn&rsquo;t the limitation — it&rsquo;s the product.
+            <p className="mt-6 font-mono text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              Read-only, always. Your keys never leave your hands — enforced in code, in the
+              European capital of crypto.
             </p>
           </aside>
         </div>
