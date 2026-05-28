@@ -1,76 +1,84 @@
 interface BrandLogoProps {
-  className?: string;
+  className?: string;       // sizes the whole lockup (icon + wordmark)
   showWordmark?: boolean;
+  iconClassName?: string;   // override icon size independently if needed
 }
 
 /**
- * CryptoTrader Pro mark — a stylised prism refracting one incoming beam
- * into four rays.
+ * Brand lockup = prism icon + wordmark, laid out with flexbox so the
+ * wordmark is real HTML text (scales, stays legible) instead of being
+ * baked into the SVG at a fixed tiny size.
  *
- * The rays were originally drawn in the four spectrum stops (cyan→indigo→
- * violet→magenta) and that was the last AI-tell visible on the landing.
- * 2026-05-25 operator decision: pull them monochrome to commit fully to the
- * Vienna-editorial direction. The brand stays single-accent (burgundy) +
- * cream throughout — no spectrum quote left in the surface.
- *
- * Both the prism stroke and the rays use currentColor, so the parent's
- * text-* utility (e.g. text-[var(--color-ink)] in the header, text-
- * [var(--color-accent)] for the burgundy-on-cream variant) cascades cleanly.
+ * Icon: a clean prism. A single beam enters from the left, passes through
+ * a triangular prism, and exits as ONE slightly-bent beam on the right.
+ * Deliberately NOT a fan of rays — the fanned version read as a broom.
+ * The geometry now says "prism / refraction / a single clear output",
+ * which also nods to the aggregation idea (many inputs resolved to one
+ * clean line).
  */
 export function BrandLogo({
   className,
   showWordmark = true,
+  iconClassName,
 }: BrandLogoProps): React.ReactElement {
   return (
-    <svg
-      viewBox={showWordmark ? '0 0 360 64' : '0 0 72 64'}
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="CryptoTrader Pro"
-      className={className}
-    >
-      {/* Incoming beam */}
-      <line
-        x1="0"
-        y1="32"
-        x2="22"
-        y2="32"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-
-      {/* Prism — thin-stroked triangle */}
-      <polygon
-        points="22,32 46,12 46,52"
+    <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`}>
+      <svg
+        viewBox="0 0 40 40"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="CryptoTrader Pro"
+        className={iconClassName ?? 'h-[1.4em] w-[1.4em] shrink-0'}
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-
-      {/* Refracted rays — monochrome, all in currentColor.
-          The spectrum stays a concept (one beam in, four out) — the visual
-          payoff is the geometry, not a rainbow. */}
-      <line x1="46" y1="22" x2="68" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="46" y1="29" x2="68" y2="26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="46" y1="35" x2="68" y2="38" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="46" y1="42" x2="68" y2="50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      >
+        {/* Incoming beam — enters low-left */}
+        <line
+          x1="2"
+          y1="26"
+          x2="13"
+          y2="26"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+        {/* Prism — equilateral triangle, thin outline */}
+        <path
+          d="M13 30 L22 11 L31 30 Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+        {/* Internal refraction hint — a faint chord across the prism */}
+        <line
+          x1="13"
+          y1="26"
+          x2="27.5"
+          y2="22"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+        {/* Exit beam — one beam, bent slightly upward, in the burgundy accent */}
+        <line
+          x1="27.5"
+          y1="22"
+          x2="38"
+          y2="18"
+          stroke="var(--color-accent-bright)"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
 
       {showWordmark && (
-        <text
-          x="84"
-          y="40"
-          fontFamily="var(--font-display), Georgia, serif"
-          fontSize="22"
-          fontStyle="italic"
-          fontWeight="400"
-          letterSpacing="-0.01em"
-          fill="currentColor"
+        <span
+          className="font-display leading-none tracking-[-0.01em]"
+          style={{ fontSize: '1.05em' }}
         >
-          CryptoTrader Pro
-        </text>
+          CryptoTrader&nbsp;Pro
+        </span>
       )}
-    </svg>
+    </span>
   );
 }

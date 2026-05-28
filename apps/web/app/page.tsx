@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BrandLogo } from '@/components/brand-logo';
 import { PortfolioStatement } from '@/components/portfolio-statement';
+import { TrueCostTable } from '@/components/true-cost-table';
 
 /**
  * Landing — editorial layout.
@@ -19,7 +20,7 @@ export default function HomePage(): React.ReactElement {
     <>
       <header className="border-b border-[var(--color-rule)] px-8 py-6">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <BrandLogo className="h-7 w-auto text-[var(--color-ink)]" />
+          <BrandLogo className="text-xl text-[var(--color-ink)]" />
           <nav className="flex items-center gap-7 text-sm">
             <Link href="/pricing" className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]">
               Pricing
@@ -55,9 +56,9 @@ export default function HomePage(): React.ReactElement {
             </h1>
 
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-              An aggregated, read-only view of every wallet, exchange, DeFi position and NFT
-              you own. Tax-ready for Austria. No order execution, no custody, no personalised
-              advice — by design, not by promise.
+              The true cost of every trade. An aggregated, read-only view of every wallet,
+              exchange, DeFi position and NFT you own. Tax-ready for Austria. No order
+              execution, no custody, no personalised advice — by design, not by promise.
             </p>
 
             <div className="mt-12 flex flex-wrap items-center gap-6">
@@ -94,28 +95,53 @@ export default function HomePage(): React.ReactElement {
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
+        {/* 01 — True Cost: the original cryptotraderpro.io hook + lead USP. */}
         <section className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
           <article className="sm:col-span-5">
-            <p className="editorial-label">01 — Aggregation</p>
-            <h2 className="display mt-3 text-3xl">Every layer, one EUR figure.</h2>
+            <p className="editorial-label">01 — True Cost</p>
+            <h2 className="display mt-3 text-4xl">
+              The fee they advertise
+              <br />
+              <em className="font-normal text-[var(--color-accent-bright)]">
+                isn&rsquo;t the fee you pay.
+              </em>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
+              Every exchange quotes a headline trading fee. The real cost is fee plus the
+              hidden spread, network gas, and withdrawal. We compute what a trade actually
+              costs you — across exchanges — so &ldquo;0 % fee&rdquo; never fools you again.
+            </p>
+          </article>
+
+          {/* True-cost comparison — proof, not assertion. */}
+          <div className="overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:col-span-7">
+            <TrueCostTable />
+          </div>
+        </section>
+
+        <hr className="my-24 border-t border-[var(--color-rule)]" />
+
+        {/* 02 — Aggregation: statement on the left this time, for rhythm. */}
+        <section className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
+          <div className="order-2 overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:order-1 sm:col-span-7">
+            <PortfolioStatement />
+          </div>
+          <article className="order-1 sm:order-2 sm:col-span-5">
+            <p className="editorial-label">02 — Aggregation</p>
+            <h2 className="display mt-3 text-4xl">Every layer, one EUR figure.</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
               CEX trades, on-chain holdings, DeFi positions, staked LP, NFT floor — joined into
               one daily EUR statement. The kind of thing a custodian used to print at month-end,
               now generated for you nightly.
             </p>
           </article>
-
-          {/* Example portfolio statement — proof, not assertion. */}
-          <div className="overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:col-span-7">
-            <PortfolioStatement />
-          </div>
         </section>
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
         <section className="grid gap-12 sm:grid-cols-2">
           <article>
-            <p className="editorial-label">02 — Tax for Austria</p>
+            <p className="editorial-label">03 — Tax for Austria</p>
             <h2 className="display mt-3 text-3xl">FIFO that an auditor accepts.</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
               ÖkoStRefG-2022-konform. Altbestand-vs-Neubestand korrekt getrennt. Export für
@@ -123,7 +149,7 @@ export default function HomePage(): React.ReactElement {
             </p>
           </article>
           <article>
-            <p className="editorial-label">03 — Active intelligence</p>
+            <p className="editorial-label">04 — Active intelligence</p>
             <h2 className="display mt-3 text-3xl">Signals on your holdings, not the market.</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
               Whale moves, KOL sentiment, rug warnings — filtered down to the assets you actually
@@ -135,9 +161,7 @@ export default function HomePage(): React.ReactElement {
 
       <footer className="border-t border-[var(--color-rule)] px-8 py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono">
-            Built in Vienna by an independent operator · OptiRisk Consulting e.U.
-          </p>
+          <p className="font-mono">Built in Vienna, European Capital of Crypto.</p>
           <nav className="flex gap-5">
             <Link href="/legal/terms">Terms</Link>
             <Link href="/legal/privacy">Privacy</Link>

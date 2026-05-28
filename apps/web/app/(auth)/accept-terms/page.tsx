@@ -67,7 +67,7 @@ export default function AcceptTermsPage() {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-8 py-16">
-      <BrandLogo className="h-7 w-auto text-[var(--color-ink)]" />
+      <BrandLogo className="text-xl text-[var(--color-ink)]" />
 
       <p className="editorial-label mt-12">One thing before we go on</p>
 

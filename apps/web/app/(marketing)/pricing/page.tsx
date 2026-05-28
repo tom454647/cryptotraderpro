@@ -62,7 +62,7 @@ export default function PricingPage() {
       <header className="border-b border-[var(--color-rule)] px-8 py-6">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <Link href="/" className="text-[var(--color-ink)]">
-            <BrandLogo className="h-7 w-auto" />
+            <BrandLogo className="text-xl" />
           </Link>
           <nav className="flex items-center gap-7 text-sm">
             <Link href="/pricing" className="text-[var(--color-ink)]">
@@ -165,9 +165,7 @@ export default function PricingPage() {
 
       <footer className="border-t border-[var(--color-rule)] px-8 py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono">
-            Built in Vienna by an independent operator · OptiRisk Consulting e.U.
-          </p>
+          <p className="font-mono">Built in Vienna, European Capital of Crypto.</p>
           <nav className="flex gap-5">
             <Link href="/legal/terms">Terms</Link>
             <Link href="/legal/privacy">Privacy</Link>

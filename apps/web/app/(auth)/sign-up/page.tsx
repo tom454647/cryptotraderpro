@@ -33,7 +33,7 @@ export default function SignUpPage(): React.ReactElement {
   return (
     <main className="mx-auto grid min-h-screen max-w-6xl grid-cols-1 gap-x-12 gap-y-12 px-8 py-16 sm:grid-cols-12 sm:items-center">
       <section className="sm:col-span-7">
-        <BrandLogo className="h-7 w-auto text-[var(--color-ink)]" />
+        <BrandLogo className="text-xl text-[var(--color-ink)]" />
         <p className="editorial-label mt-12">New operator</p>
         <h1 className="display mt-6 text-5xl sm:text-6xl">
           Start
