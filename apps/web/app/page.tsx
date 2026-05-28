@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BrandLogo } from '@/components/brand-logo';
+import { PortfolioStatement } from '@/components/portfolio-statement';
 
 /**
  * Landing — editorial layout.
@@ -93,15 +94,26 @@ export default function HomePage(): React.ReactElement {
 
         <hr className="my-24 border-t border-[var(--color-rule)]" />
 
-        <section className="grid gap-12 sm:grid-cols-3">
-          <article>
+        <section className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
+          <article className="sm:col-span-5">
             <p className="editorial-label">01 — Aggregation</p>
             <h2 className="display mt-3 text-3xl">Every layer, one EUR figure.</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-soft)]">
               CEX trades, on-chain holdings, DeFi positions, staked LP, NFT floor — joined into
-              one daily EUR statement.
+              one daily EUR statement. The kind of thing a custodian used to print at month-end,
+              now generated for you nightly.
             </p>
           </article>
+
+          {/* Example portfolio statement — proof, not assertion. */}
+          <div className="overflow-x-auto rounded-sm border border-[var(--color-rule)] bg-[var(--color-surface)] p-5 sm:col-span-7">
+            <PortfolioStatement />
+          </div>
+        </section>
+
+        <hr className="my-24 border-t border-[var(--color-rule)]" />
+
+        <section className="grid gap-12 sm:grid-cols-2">
           <article>
             <p className="editorial-label">02 — Tax for Austria</p>
             <h2 className="display mt-3 text-3xl">FIFO that an auditor accepts.</h2>

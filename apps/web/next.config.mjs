@@ -7,6 +7,9 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
+  // Transpile workspace packages so Next.js can import them as TypeScript
+  // source (they don't ship pre-built dist/). Add new internal packages here.
+  transpilePackages: ['@cryptotrader/shared'],
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001',
   },
