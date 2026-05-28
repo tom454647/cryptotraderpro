@@ -44,21 +44,23 @@ export default function HomePage(): React.ReactElement {
 
       <main className="mx-auto max-w-6xl px-8 py-24 sm:py-32">
         <div className="grid gap-x-12 gap-y-16 sm:grid-cols-12">
-          <div className="sm:col-span-8">
+          <div className="sm:col-span-7">
             <p className="editorial-label">Vienna · est. 2026 · Issue 01</p>
 
             <h1 className="display mt-8 text-6xl sm:text-7xl md:text-8xl">
-              Everything you hold.
+              See all of it.
               <br />
               <em className="font-normal text-[var(--color-accent-bright)]">
-                Priced honestly. Taxed correctly.
+                Know the real cost.
               </em>
+              <br />
+              Keep every key.
             </h1>
 
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-              Every wallet, exchange, DeFi position and NFT you own — aggregated read-only into
-              one EUR view, with the true cost of every trade and an Austrian-tax-ready FIFO
-              export. You keep every key; we never place a trade.
+              CryptoTrader Pro pulls every wallet, exchange, chain, DeFi position and NFT into
+              one EUR view — with the true cost of every trade and Austrian-tax-ready FIFO.
+              Read-only at the code level. You aggregate and decide; we never place a trade.
             </p>
 
             <div className="mt-12 flex flex-wrap items-center gap-6">
@@ -77,18 +79,25 @@ export default function HomePage(): React.ReactElement {
             </div>
           </div>
 
-          <aside className="border-l border-[var(--color-rule)] pl-8 sm:col-span-4">
-            <p className="editorial-label">On our position</p>
+          <aside className="flex flex-col justify-center border-l border-[var(--color-rule)] pl-8 sm:col-span-5">
+            <p className="editorial-label">The principle</p>
 
-            <p className="mt-6 font-mono text-sm leading-relaxed text-[var(--color-ink-soft)]">
-              CryptoTrader Pro is not a Crypto-Asset Service Provider under MiCAR. We don&rsquo;t
-              accept orders, route orders, execute orders, custody funds, or give personalised
-              advice.
+            <p className="display mt-6 text-2xl leading-snug text-[var(--color-ink)]">
+              Every other tracker eventually wants keys that can trade, buries the real fees, or
+              sells your attention.
             </p>
 
-            <p className="mt-4 font-mono text-sm leading-relaxed text-[var(--color-ink-soft)]">
-              You stay on Binance, Bybit, Bitpanda or your own self-custody wallet. We read.
-              You decide. The licence-free posture is the product.
+            <p className="mt-6 text-base leading-relaxed text-[var(--color-ink-soft)]">
+              We took the opposite oath. Read-only, enforced in code. Honest about every cost.
+              Built for Austrian tax from day one — in the European capital of crypto.
+            </p>
+
+            <p className="mt-6 text-base leading-relaxed text-[var(--color-ink-soft)]">
+              The only crypto cockpit{' '}
+              <span className="text-[var(--color-ink)]">
+                structurally incapable of moving your money.
+              </span>{' '}
+              That isn&rsquo;t the limitation — it&rsquo;s the product.
             </p>
           </aside>
         </div>
