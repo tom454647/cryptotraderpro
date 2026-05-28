@@ -36,6 +36,42 @@ export class AuthService {
   }
 
   /**
+   * Look up the local Postgres mirror for a Supabase user id.
+   * Returns null if the webhook hasn't created the row yet (first-signup race).
+   */
+  async findLocalUser(authProviderId: string) {
+    return this.prisma.user.findUnique({
+      where: { authProviderId },
+      select: {
+        id: true,
+        email: true,
+        acceptedTermsAt: true,
+        acceptedTermsVersion: true,
+        taxResidency: true,
+        baseCurrency: true,
+      },
+    });
+  }
+
+  /**
+   * First-signup fallback when the Supabase webhook hasn't fired yet.
+   * Idempotent — only creates if no row exists for this auth provider id.
+   */
+  async ensureLocalUser(input: {
+    authProviderId: string;
+    email: string;
+  }): Promise<void> {
+    await this.prisma.user.upsert({
+      where: { authProviderId: input.authProviderId },
+      create: {
+        authProviderId: input.authProviderId,
+        email: input.email,
+      },
+      update: {},
+    });
+  }
+
+  /**
    * Mirror a Supabase user into our own User row. Idempotent — webhook
    * delivery is at-least-once, so we tolerate replays.
    */

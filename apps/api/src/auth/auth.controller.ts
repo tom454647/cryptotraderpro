@@ -83,12 +83,30 @@ export class AuthController {
   }
 
   /**
-   * Returns the currently-authenticated user payload from the JWT.
-   * Behind the global AuthGuard — so a 401 means "not logged in" not "no such user".
+   * Returns the currently-authenticated user — JWT payload plus the mirrored
+   * row from our Postgres (so the frontend knows whether terms have been
+   * accepted and which tier the user is on).
+   *
+   * Behind the global AuthGuard — a 401 means "not logged in" not "no such user".
+   * If the local mirror is missing (webhook race on first sign-up), returns
+   * the JWT alone with `mirror: null` so the frontend can wait + retry.
    */
   @Get('me')
-  me(@CurrentUser() user: unknown): unknown {
-    return user;
+  async me(@CurrentUser('sub') sub: string, @CurrentUser() jwt: unknown) {
+    const mirror = await this.authService.findLocalUser(sub);
+    return {
+      jwt,
+      mirror: mirror
+        ? {
+            id: mirror.id,
+            email: mirror.email,
+            acceptedTermsAt: mirror.acceptedTermsAt,
+            acceptedTermsVersion: mirror.acceptedTermsVersion,
+            taxResidency: mirror.taxResidency,
+            baseCurrency: mirror.baseCurrency,
+          }
+        : null,
+    };
   }
 
   /**
