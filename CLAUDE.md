@@ -8,15 +8,20 @@
 
 Live legacy site: [cryptotraderpro.io](https://cryptotraderpro.io) — fee calculator built on React 19 + Vite, lives in `apps/marketing/` and stays online. The Next.js dashboard in `apps/web/` will replace it post-launch.
 
-## The five USP pillars (all must be served across the product)
+## The USP pillars — canonical (operator-locked 2026-05-29)
 
-0. **True Cost** ← the original cryptotraderpro.io hook + the lead USP (operator-confirmed 2026-05-25). The real cost of a trade is the advertised fee PLUS the hidden spread + network/gas + withdrawal. We compute what a trade actually costs across exchanges so "0% fee" never fools the user. **The fee engine already exists** — it's the legacy Vite calculator in `apps/marketing`. Sprint task: port that engine into apps/web as a live feature (currently the landing shows an illustrative ASCII proof in `components/true-cost-table.tsx`).
-1. **Austrian Tax Engine** — ÖkoStRefG-2022-konform FIFO, Altbestand-vs-Neubestand cutoff, FinanzOnline-export. Beats Koinly's generic output.
-2. **Universal Aggregation** — CEX + DEX + DeFi + Staking + LP + **NFT** in one EUR-denominated view. Briefing §14 originally excluded NFTs — operator override 2026-05-25 added them back.
-3. **Active Intelligence** — Whale-alerts filtered to held assets, KOL-sentiment, rug-warnings. Pro-active, not display-only.
-4. **AI Coach Trade Journal** — Claude Haiku reflects on user's own trade behavior (MiCAR-safe: reflection, not advice).
+These are the BRIEFING §2 (pricing) + §3.2 (allowed actions) + sprint-plan features, **plus** the True-Cost fee comparison. The landing must communicate THESE — not improvised pain-points. "halt dich ans Briefing." Tier in brackets.
 
-Note: there is a *second* "True Cost" concept in BRIEFING §2 — a dashboard widget showing the user their share of OUR infrastructure costs. That's a trust feature, not the lead USP. Pillar 0 above is the exchange-fee calculator ("see what you really pay"), confirmed by the operator as the USP.
+1. **True Cost** — exchange-fee comparison: advertised fee vs the *real* cost (fee + hidden spread + network/gas + withdrawal), compared across exchanges so "0% fee" never fools the user. The original cryptotraderpro.io hook; the fee engine already exists in the legacy Vite calculator (`apps/marketing`). Operator-confirmed as a kept USP 2026-05-29. [Free/Pro]
+2. **Universal Aggregation** — CEX + DEX + DeFi + Staking + LP + **NFT** in one EUR view, with P&L per asset across all sources. NFT was excluded in BRIEFING §14 — operator override 2026-05-25 added it back. [§2 Pro]
+3. **Austrian Tax Engine** — ÖkoStRefG-2022-konform FIFO, Altbestand-vs-Neubestand cutoff, KESt, FinanzOnline + Steuerberater export. [§2 Pro, Sprint 6]
+4. **Bridge & DCA tools** — LiFi bridge-quote comparison (neutral, sortable), slippage simulator, DCA planner. All strictly passive-information + affiliate deeplink — "we show, you execute" (MiCAR-safe per §3.3). [§2 Pro, Sprint 7]
+5. **Active Intelligence** — whale-alerts filtered to held assets, KOL-sentiment, rug-warnings. Pro-active, not display-only. [§2 Trader, Sprint 8]
+6. **AI Coach Trade Journal** — Claude Haiku reflects on the user's own trade behaviour (MiCAR-safe: reflection, not advice). [§2 Trader, Sprint 8]
+
+**Not USPs:** Transparent affiliate deeplinks = monetisation mechanism (disclosed, never ranked-by-payout). Read-only/MiCAR = business-model foundation + trust signal (see below). The BRIEFING §2 "True Cost"-widget (showing the user their share of OUR infra cost) is a separate trust feature, not pillar 1.
+
+**Drift warning (2026-05-29):** earlier landing iterations invented pain-points and a "Why us" competitor comparison not grounded in the briefing, and omitted Bridge/DCA/Slippage. Keep the landing's USP content tied to the six pillars above.
 
 **Read-only / MiCAR is NOT a customer-acquisition USP** (operator call 2026-05-28). It is the *business-model foundation* (licence-free operation) and a *trust signal*. On the landing it appears only as a small mono trust-closer line ("Read-only, always. Your keys never leave your hands"), never as a hero line or a pain-point in the manifesto. Do not promote "we can't trade / keep every key" to a headline pillar — customers don't shop for it; they shop for True Cost, Aggregation, Tax, Active Intelligence, AI Coach. Read-only earns trust once they're already interested.
 

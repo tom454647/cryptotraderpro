@@ -7,43 +7,49 @@ interface Row {
 
 /**
  * The manifesto — the prominent "why we exist" section on the landing.
- * Each row pairs a real pain point of the crypto scene (left, muted,
- * in quotes — the scene's own voice) with our answer (right, ink +
- * a burgundy keyword). Editorial index cadence: numbered, hairline
- * rules between rows, no cards, no icons.
+ * Each row pairs a pain point of the crypto scene (left, muted, in quotes)
+ * with our answer (right, ink + burgundy keyword). Editorial index cadence.
  *
- * Copy is operator-iterated — structure and hierarchy are what's locked.
+ * The six rows map 1:1 to the canonical USP pillars in CLAUDE.md (BRIEFING
+ * §2 features + True Cost). Do NOT invent USPs here — keep tied to the
+ * briefing. Copy is operator-iterated; the pillar each row represents is not.
  */
 const ROWS: Row[] = [
   {
     n: '01',
-    pain: '“Zero fees.” Then the spread quietly skims half a percent off every trade.',
-    answer: 'The true cost of a trade — across every exchange.',
-    detail: 'Fee + hidden spread + network + withdrawal, side by side. The “0% fee” venue is rarely the cheapest.',
+    pain: '“Zero fees.” Then the spread, the gas and the withdrawal quietly make the trade cost more — somewhere you never see it.',
+    answer: 'True cost, compared across exchanges.',
+    detail: 'Advertised fee plus the hidden spread, network and withdrawal — computed side by side, so the “0% fee” venue never fools you.',
   },
   {
     n: '02',
-    pain: 'Your crypto is scattered across five wallets, three exchanges, DeFi and a few NFTs. No tool shows all of it at once.',
-    answer: 'One EUR view. Every wallet, exchange, chain, position.',
-    detail: 'CEX, DEX, DeFi, staking, LP, NFT — consolidated nightly into a single statement.',
+    pain: 'Your holdings sit across exchange accounts, on-chain wallets, DeFi, staking, LPs and NFTs. No single screen shows the lot.',
+    answer: 'Everything you own, in one EUR view.',
+    detail: 'CEX, DEX, DeFi, staking, LP and NFT consolidated into one statement, with profit and loss per asset across every source.',
   },
   {
     n: '03',
-    pain: 'Austrian crypto tax is a nightmare, and the generic exporters don’t speak ÖkoStRefG.',
+    pain: 'Austrian crypto tax means ÖkoStRefG, Altbestand cutoffs and KESt — and the generic trackers model none of it.',
     answer: 'FIFO an auditor accepts.',
-    detail: 'Altbestand vs. Neubestand split correctly, KESt computed, FinanzOnline + Steuerberater export.',
+    detail: 'ÖkoStRefG-2022 rules, Altbestand vs. Neubestand split correctly, KESt computed, FinanzOnline + Steuerberater export.',
   },
   {
     n: '04',
-    pain: 'You hear about the whale dump and the rug pull after your bag is already down 40%.',
-    answer: 'Signals on the assets you actually hold.',
-    detail: 'Whale moves, KOL sentiment, rug warnings — filtered to your holdings. The rest is noise.',
+    pain: 'Bridging and buying mean tab-hopping between aggregators, guessing at fees, slippage and the right moment.',
+    answer: 'Compare bridges, simulate slippage, plan your DCA.',
+    detail: 'LiFi bridge quotes side by side, a slippage simulator, and a DCA planner. We show the numbers; you execute on the platform you choose.',
   },
   {
     n: '05',
-    pain: 'You repeat the same FOMO buys and panic sells, and nobody ever shows you the pattern.',
-    answer: 'An AI coach that reflects your own behaviour back.',
-    detail: 'Claude reads your trade history and asks the questions a good mentor would. A mirror, not advice.',
+    pain: 'You hear about the whale dump, the KOL call and the rug after it already moved your bag.',
+    answer: 'Signals on the assets you actually hold.',
+    detail: 'Whale moves, KOL sentiment and rug warnings, filtered to your holdings — not the whole noisy market.',
+  },
+  {
+    n: '06',
+    pain: 'You repeat the same FOMO buys and panic sells, and no tool ever reflects the pattern back.',
+    answer: 'An AI coach for your own trades.',
+    detail: 'Claude reads your trade history and asks the questions a good mentor would. Reflection on your behaviour — not advice.',
   },
 ];
 
