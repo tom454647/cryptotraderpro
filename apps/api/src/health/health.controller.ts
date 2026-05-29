@@ -1,6 +1,7 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
 import { PrismaService } from '../common/prisma/prisma.service';
 import { RedisService } from '../common/redis/redis.service';
+import { Public } from '../auth/public.decorator';
 
 interface HealthResponse {
   status: 'ok' | 'degraded';
@@ -9,6 +10,7 @@ interface HealthResponse {
   timestamp: string;
 }
 
+@Public()
 @Controller('health')
 export class HealthController {
   constructor(

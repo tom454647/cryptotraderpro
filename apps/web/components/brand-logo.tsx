@@ -1,68 +1,24 @@
 interface BrandLogoProps {
-  className?: string;
-  showWordmark?: boolean;
+  className?: string;       // sizes the wordmark via font-size (e.g. text-xl)
+  showWordmark?: boolean;   // kept for API compatibility; the logo IS the wordmark
 }
 
 /**
- * CryptoTrader Pro logo — a stylized prism refracting a single incoming beam
- * into the brand spectrum (cyan → indigo → violet → magenta). Visualises the
- * Universal-Aggregation pillar: many sources, one clear view.
+ * Brand = a pure typographic wordmark. No icon.
  *
- * Viewport is wider when the wordmark is shown to fit "CryptoTrader Pro".
- * Use `className="h-9 w-auto"` etc. Pure SVG; the wordmark inherits text-*
- * utilities via currentColor.
+ * "CryptoTrader Pro" set in Instrument Serif, inheriting the parent's text
+ * colour (cream on the dark canvas). The only accent is the closing full
+ * stop in burgundy — a quiet newspaper-masthead signature. "Pro" is NOT
+ * italicised and NOT colour-shifted (operator call): the wordmark reads as
+ * one clean unit, the red dot is the single signature mark.
  */
-export function BrandLogo({
-  className,
-  showWordmark = true,
-}: BrandLogoProps): React.ReactElement {
+export function BrandLogo({ className }: BrandLogoProps): React.ReactElement {
   return (
-    <svg
-      viewBox={showWordmark ? '0 0 320 64' : '0 0 72 64'}
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
+    <span
+      className={`font-display font-normal leading-none tracking-[-0.01em] ${className ?? ''}`}
       aria-label="CryptoTrader Pro"
-      className={className}
     >
-      {/* Incoming beam */}
-      <line
-        x1="0"
-        y1="32"
-        x2="22"
-        y2="32"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-
-      {/* Prism — triangle, stroked only */}
-      <polygon
-        points="22,32 46,12 46,52"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-
-      {/* Refracted rays — 4 lines fanning right, each in a spectrum stop */}
-      <line x1="46" y1="22" x2="68" y2="14" stroke="oklch(0.78 0.13 200)" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="46" y1="29" x2="68" y2="26" stroke="oklch(0.62 0.18 268)" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="46" y1="35" x2="68" y2="38" stroke="oklch(0.58 0.22 305)" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="46" y1="42" x2="68" y2="50" stroke="oklch(0.66 0.24 340)" strokeWidth="2.5" strokeLinecap="round" />
-
-      {showWordmark && (
-        <text
-          x="84"
-          y="42"
-          fontFamily="var(--font-geist-sans), system-ui, sans-serif"
-          fontSize="26"
-          fontWeight="600"
-          letterSpacing="-0.02em"
-          fill="currentColor"
-        >
-          CryptoTrader Pro
-        </text>
-      )}
-    </svg>
+      CryptoTrader Pro<span className="text-[var(--color-accent-bright)]">.</span>
+    </span>
   );
 }

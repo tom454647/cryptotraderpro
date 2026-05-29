@@ -1,90 +1,155 @@
 @import 'tailwindcss';
 
 /*
- * CryptoTrader Pro — Visual Identity
+ * CryptoTrader Pro — Visual Identity (Editorial, anti-generic edition)
  * ============================================================================
- * Brand metaphor: a prism refracting many sources into one clear spectrum view
- * (cyan → indigo → violet → magenta). The metaphor stands independent of the
- * product name and visualises the Universal-Aggregation pillar.
+ * Brand direction is Vienna editorial, not Vercel-AI-SaaS. Avoids:
+ *   - the cyan→indigo→violet→magenta spectrum gradient on body text
+ *     (the single most-overused AI-design tell, 2024-2026)
+ *   - the slate-950/indigo-500 dark-mode default Tailwind palette
+ *   - Geist sans + Geist mono (the open-source Vercel package; used in every
+ *     v0-/Bolt-/Replit-generated landing page)
  *
- * Typography: Geist (sans) + Geist Mono — Vercel's open-source typeface.
- *   Loaded via app/layout.tsx with next/font/google → zero CLS, self-hosted.
- *
- * Palette tokens follow Tailwind v4 `@theme` syntax — every utility class
- * referencing a brand token (`bg-brand-cyan`, `text-brand-violet`) resolves
- * through this block.
+ * Replaced with:
+ *   - Instrument Serif for display (italic-friendly, editorial heritage)
+ *   - Switzer for body sans (OFL, distinct shape, not Inter-shaped)
+ *   - IBM Plex Mono for technical text
+ *   - A warm charcoal canvas (faint brown undertone, not the cold blue slate)
+ *   - Cream text, deep burgundy as the only saturated accent
+ *   - The spectrum gradient SURVIVES only as a one-time, small detail in the
+ *     logo's refracted rays. It is a brand quote, not a brand strategy.
  */
 
 @theme {
-  /* Sans + mono ship through next/font; CSS just references the variables. */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Display + body + mono — three personalities. */
+  --font-display: var(--font-instrument-serif), 'Iowan Old Style', Georgia, serif;
+  --font-sans: var(--font-onest), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Foundation — neutral slate, optimized for dark-mode-first product. */
-  --color-canvas: oklch(0.16 0.015 250);          /* deep slate-near-black */
-  --color-surface: oklch(0.22 0.018 250);         /* card surface */
-  --color-surface-elevated: oklch(0.28 0.02 250); /* hover, focus */
-  --color-border-subtle: oklch(0.32 0.022 250);
-  --color-border-strong: oklch(0.45 0.03 250);
+  /* Foundation — warm charcoal, not cold slate. */
+  --color-canvas: oklch(0.13 0.012 50);            /* near-black with a faint brown undertone */
+  --color-surface: oklch(0.19 0.012 50);
+  --color-surface-elevated: oklch(0.24 0.012 50);
+  --color-rule: oklch(0.32 0.014 50);              /* hairline divider colour */
+  --color-rule-strong: oklch(0.46 0.018 50);
 
-  --color-text-primary: oklch(0.97 0.005 250);
-  --color-text-secondary: oklch(0.78 0.015 250);
-  --color-text-muted: oklch(0.58 0.018 250);
+  /* Cream text — a hair away from pure white so the page reads like paper. */
+  --color-ink: oklch(0.95 0.014 70);                /* primary cream */
+  --color-ink-soft: oklch(0.78 0.014 70);
+  --color-ink-muted: oklch(0.58 0.012 60);
 
-  /* The prism spectrum — used sparingly: logo, hero glow, single CTAs.
-     Picked along an aesthetic-but-accessible arc (cyan → indigo → magenta). */
-  --color-brand-cyan: oklch(0.78 0.13 200);       /* #5BD9D2-ish */
-  --color-brand-indigo: oklch(0.62 0.18 268);     /* signature mid-tone */
-  --color-brand-violet: oklch(0.58 0.22 305);
-  --color-brand-magenta: oklch(0.66 0.24 340);
+  /* Single saturated accent — deep oxblood/burgundy. Used very sparingly. */
+  --color-accent: oklch(0.48 0.14 25);              /* burgundy 600-ish */
+  --color-accent-bright: oklch(0.62 0.16 25);       /* hover state */
 
-  /* The signature gradient — used on the wordmark and the hero backlight. */
-  --gradient-spectrum: linear-gradient(
-    96deg,
-    var(--color-brand-cyan) 0%,
-    var(--color-brand-indigo) 38%,
-    var(--color-brand-violet) 68%,
-    var(--color-brand-magenta) 100%
-  );
+  /* The four spectrum stops the original Refract concept used inside the
+     logo rays. Retired 2026-05-25 — the logo is now monochrome so the brand
+     is fully single-accent. Kept here, commented, as the historical reference
+     in case we ever want to expose a "Spectrum Edition" colourway later. */
+  /* --logo-ray-1: oklch(0.78 0.13 200);
+     --logo-ray-2: oklch(0.62 0.18 268);
+     --logo-ray-3: oklch(0.58 0.22 305);
+     --logo-ray-4: oklch(0.66 0.24 340); */
 
-  /* Semantic accents — kept independent of the spectrum so signal stays clear. */
-  --color-success: oklch(0.72 0.16 145);
-  --color-warning: oklch(0.78 0.16 75);
-  --color-danger: oklch(0.65 0.22 25);
+  /* Semantic accents kept independent of the brand colour. */
+  --color-success: oklch(0.66 0.13 145);
+  --color-warning: oklch(0.74 0.14 75);
+  --color-danger: oklch(0.62 0.20 25);
 }
 
 html,
 body {
   background-color: var(--color-canvas);
-  color: var(--color-text-primary);
+  color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: 'cv11', 'ss01', 'ss03';  /* Geist's tabular-friendly variants */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* The hero backlight — a subtle, blurred slice of the spectrum behind H1.
-   Use as: <div class="spectrum-glow">…</div> wrapping the hero. */
-.spectrum-glow {
-  position: relative;
-  isolation: isolate;
-}
-.spectrum-glow::before {
-  content: '';
-  position: absolute;
-  inset: -40% -10% auto -10%;
-  height: 380px;
-  background: var(--gradient-spectrum);
-  filter: blur(120px);
-  opacity: 0.18;
-  z-index: -1;
-  pointer-events: none;
+/* Hairline rule — used between editorial sections. */
+.rule {
+  border-top: 1px solid var(--color-rule);
 }
 
-/* Wordmark — gradient-filled text used as accent in the hero only. */
-.wordmark-spectrum {
-  background: var(--gradient-spectrum);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Display headline — Instrument Serif, italic-friendly. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* Small caps + tracking — used for vintage editorial labels. */
+.editorial-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--color-ink-muted);
+}
+
+/* Prose styling for legal long-form pages. Tight, editorial, scannable. */
+.prose-legal {
+  color: var(--color-ink-soft);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.prose-legal h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.prose-legal h3 {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink);
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+.prose-legal p {
+  margin-bottom: 1rem;
+}
+.prose-legal ul,
+.prose-legal ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+}
+.prose-legal li {
+  margin-bottom: 0.4rem;
+  list-style: '— ';
+  padding-left: 0.25rem;
+}
+.prose-legal a {
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+.prose-legal a:hover {
+  border-bottom-color: var(--color-accent-bright);
+}
+.prose-legal strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.prose-legal code,
+.prose-legal kbd {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent-bright);
+}
+.prose-legal blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--color-ink);
 }
