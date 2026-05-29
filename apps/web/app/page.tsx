@@ -59,23 +59,20 @@ export default function HomePage(): React.ReactElement {
           </div>
 
           <aside className="flex flex-col justify-center border-l border-[var(--color-rule)] pl-8 sm:col-span-5">
-            <p className="editorial-label">Why us</p>
+            <p className="editorial-label">What we are</p>
 
             <p className="display mt-6 text-2xl leading-snug text-[var(--color-ink)]">
-              The tax tools can&rsquo;t show your live portfolio. The DeFi dashboards can&rsquo;t
-              see your exchange trades. The fee comparators don&rsquo;t know what you hold.
+              An information and aggregation service — built in the European capital of crypto.
             </p>
 
             <p className="mt-6 text-base leading-relaxed text-[var(--color-ink-soft)]">
-              CryptoTrader Pro is the first that does{' '}
-              <span className="text-[var(--color-ink)]">all of it at once</span> — the true cost
-              of every trade, every position in one EUR statement, and Austrian tax an auditor
-              accepts.
+              We read your wallet and exchange data on your instruction, surface market
+              information, compute your Austrian tax, and document your trades. You stay in
+              control — every order happens on the platform of your choice.
             </p>
 
             <p className="mt-6 font-mono text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              Read-only, always. Your keys never leave your hands — enforced in code, in the
-              European capital of crypto.
+              Read-only, always. Your keys never leave your hands.
             </p>
           </aside>
         </div>
