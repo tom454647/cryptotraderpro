@@ -7,6 +7,7 @@ import { RedisModule } from './common/redis/redis.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 import { WalletModule } from './wallets/wallet.module';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { WalletModule } from './wallets/wallet.module';
     RedisModule,
     HealthModule,
     AuthModule,
+    PortfolioModule,
     WalletModule,
   ],
   providers: [

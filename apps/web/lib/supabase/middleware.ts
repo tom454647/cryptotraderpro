@@ -47,7 +47,13 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
   } = await supabase.auth.getSession();
 
   const pathname = request.nextUrl.pathname;
-  const isDashboard = pathname.startsWith('/dashboard');
+  // Authenticated app surfaces under the (dashboard) route group. These live
+  // at top-level URLs (route groups don't affect the path), so each must be
+  // listed explicitly — not just /dashboard.
+  const PROTECTED_PREFIXES = ['/dashboard', '/wallets', '/portfolio'];
+  const isDashboard = PROTECTED_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
   const isAcceptTerms = pathname === '/accept-terms';
   const isAuthPage = pathname === '/sign-in' || pathname === '/sign-up';
 

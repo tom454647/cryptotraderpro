@@ -10,6 +10,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { CurrentUser } from '../auth/current-user.decorator';
+import { PositionService } from '../portfolio/position.service';
 import { WalletService } from './wallet.service';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 
@@ -20,7 +21,10 @@ import { CreateWalletDto } from './dto/create-wallet.dto';
  */
 @Controller('wallets')
 export class WalletController {
-  constructor(@Inject(WalletService) private readonly wallets: WalletService) {}
+  constructor(
+    @Inject(WalletService) private readonly wallets: WalletService,
+    @Inject(PositionService) private readonly positions: PositionService,
+  ) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -40,14 +44,14 @@ export class WalletController {
   }
 
   /**
-   * Manual sync trigger. In 3.3 this enqueues a BullMQ wallet-sync job;
-   * for now it validates ownership and returns accepted so the frontend
-   * flow can be wired up before the connector lands.
+   * Manual sync trigger — reads the wallet's on-chain balances, prices them,
+   * and replaces its stored positions. Runs synchronously for now; a later
+   * 3.x can move this behind a BullMQ job without changing the contract.
+   * Returns 200 with the sync summary.
    */
   @Post(':id/sync')
-  @HttpCode(HttpStatus.ACCEPTED)
+  @HttpCode(HttpStatus.OK)
   async sync(@CurrentUser('sub') sub: string, @Param('id') id: string) {
-    const walletId = await this.wallets.assertOwned(sub, id);
-    return { walletId, status: 'sync_queued' };
+    return this.positions.syncWallet(sub, id);
   }
 }
