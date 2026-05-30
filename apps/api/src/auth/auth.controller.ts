@@ -88,12 +88,23 @@ export class AuthController {
    * accepted and which tier the user is on).
    *
    * Behind the global AuthGuard — a 401 means "not logged in" not "no such user".
-   * If the local mirror is missing (webhook race on first sign-up), returns
-   * the JWT alone with `mirror: null` so the frontend can wait + retry.
+   * Also self-heals the local mirror: in local dev the Supabase `user.created`
+   * webhook can't reach localhost, so on first authenticated load we upsert the
+   * row from the verified JWT (email claim). Idempotent — a later real webhook
+   * just updates the same row. Without this, /accept-terms (which updates an
+   * existing row) fails for every fresh local signup.
    */
   @Get('me')
-  async me(@CurrentUser('sub') sub: string, @CurrentUser() jwt: unknown) {
-    const mirror = await this.authService.findLocalUser(sub);
+  async me(
+    @CurrentUser('sub') sub: string,
+    @CurrentUser('email') email: string | undefined,
+    @CurrentUser() jwt: unknown,
+  ) {
+    let mirror = await this.authService.findLocalUser(sub);
+    if (!mirror && email) {
+      await this.authService.ensureLocalUser({ authProviderId: sub, email });
+      mirror = await this.authService.findLocalUser(sub);
+    }
     return {
       jwt,
       mirror: mirror

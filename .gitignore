@@ -10,6 +10,7 @@ build/
 .turbo/
 .vercel/
 out/
+*.tsbuildinfo
 
 # Logs
 logs/
@@ -51,6 +52,8 @@ Thumbs.db
 # OS / Office temp files
 ~$*
 *.tmp
+# OneDrive drops a desktop.ini into synced folders — never ours to commit
+desktop.ini
 
 # URL shortcut text (briefing source — keep BRIEFING.md instead)
 CryptoTrader Pro.url.txt

@@ -25,17 +25,24 @@ These are the BRIEFING §2 (pricing) + §3.2 (allowed actions) + sprint-plan fea
 
 **Read-only / MiCAR is NOT a customer-acquisition USP** (operator call 2026-05-28). It is the *business-model foundation* (licence-free operation) and a *trust signal*. On the landing it appears only as a small mono trust-closer line ("Read-only, always. Your keys never leave your hands"), never as a hero line or a pain-point in the manifesto. Do not promote "we can't trade / keep every key" to a headline pillar — customers don't shop for it; they shop for True Cost, Aggregation, Tax, Active Intelligence, AI Coach. Read-only earns trust once they're already interested.
 
-## Current state (2026-05-25)
+## Current state (2026-05-29)
 
-- **Sprint 1 (Foundation) is code-complete and verified.** `pnpm install` succeeds, `pnpm db:up` brings Postgres+Redis up healthy, `prisma migrate dev` applies the init migration, NestJS boots on :3001, `GET /health` returns `{"status":"ok","db":"up","redis":"up"}`.
-- **PR #1 open** at https://github.com/tom454647/cryptotraderpro/pull/1 — Sprint 1 + visual identity + 4 ADRs. Squash-merge is recommended.
-- **Sprint 2 not yet started** — depends on user finishing vendor account setup (see "Pending user actions" below).
+- **Sprint 1 + 2 merged to `main`** (PRs #1 + #2; PR #1 was merged early at `896c011`, PR #2 brought the rest). main = full foundation + Sprint 2 + editorial landing.
+- **Sprint 2 done (6/7).** Supabase Auth (JWKS guard, sign-in/up, accept-terms), Sentry (BE+FE, EU), PostHog (FE, EU), legal pages, terms-acceptance flow, static pricing. **2.7 Stripe deferred** — waiting on operator to activate Stripe Tax.
+- **Landing** is the Vienna-editorial direction, USPs tied to the canonical six (see above). Live-checkable at `localhost:3000` after `pnpm --filter @cryptotrader/web dev`.
+- **Sprint 3 in progress on branch `feat/sprint-3-evm-wallets`:**
+  - 3.1 WalletModule ✅ (CRUD, isWatchOnly forced, viem address validation, /api/wallets routes verified 401-guarded)
+  - 3.2 AlchemyService + ProviderRouter — NOT started
+  - 3.3 CoinGeckoService + PositionService — NOT started
+  - 3.4 Dashboard /wallets + /portfolio — NOT started
+- **Blocks 3.2/3.3 live test:** operator needs `ALCHEMY_API_KEY` (alchemy.com free) + `COINGECKO_API_KEY` (coingecko.com demo) in `apps/api/.env`. Skeleton can be built without; live data needs them.
+- Env already filled: Supabase (url/anon/service_role/JWKS), Stripe `sk_test_*` + `pk_test_*`, Sentry EU DSNs (BE+FE), PostHog EU key, ENCRYPTION_KEY. Supabase webhook secret + Stripe price IDs come during their sprints.
 
 ## Stack
 
 - Monorepo: Turborepo + pnpm workspaces
 - Backend: NestJS 10 (port 3001), Prisma 7.8 (Rust-free, uses @prisma/adapter-pg), Postgres 16, Redis 7
-- Frontend: Next.js 15 App Router + React 19 + Tailwind v4 (OKLCH spectrum tokens) + Geist sans/mono via next/font
+- Frontend: Next.js 16 App Router + React 19 + Tailwind v4 (OKLCH editorial tokens) + Instrument Serif / Onest / IBM Plex Mono via next/font
 - Legacy: Vite SPA on cryptotraderpro.io
 - Hosting target: Railway (API, EU-Frankfurt) + Vercel (Web, EU-Edge)
 - Node version: 24 (.nvmrc says 20 but Prisma 7 supports 24 — leave as-is)
@@ -131,26 +138,23 @@ If any answer is ambiguous, halt and consult counsel before merging.
 - [ ] Dashboard-preview component on the landing — a real Editorial-styled portfolio-aggregation card as the hero proof. Sprint 3 deliverable once we have real aggregation data flowing.
 - [ ] Headlines + body copy are still placeholder. Operator will iterate copy separately. Don't lock the wording, lock the **structure** and **visual language**.
 
-## Pending user actions (blocks Sprint 2)
+## Pending user actions
 
-User has these accounts but needs to fill envs / activate features:
+Done: Supabase (url/anon/service_role/JWKS), Stripe `sk_test_*`+`pk_test_*`, Sentry EU DSNs (BE+FE), PostHog EU key, ENCRYPTION_KEY — all in `apps/api/.env` / `apps/web/.env.local`.
 
-- [ ] **Supabase**: copy `service_role` key + JWT Secret into `apps/api/.env` (Dashboard → Project Settings → API)
-- [ ] **Supabase**: confirm DB password is saved in password manager
-- [ ] **Stripe**: copy `sk_test_*` into `apps/api/.env` (Dashboard → Developers → API keys → Reveal)
-- [ ] **Stripe Tax**: activate at Settings → Tax → "Activate Stripe Tax" → Add registration Austria (VAT)
-- [ ] **Sentry**: create two EU-region projects (`ctp-api` NestJS, `ctp-web` Next.js) → DSNs into respective `.env`
-- [ ] **PostHog**: copy Project API Key from eu.posthog.com → `apps/web/.env.local`
-
-Once those are in: Sprint 2 can start (Supabase Auth + Stripe 3-tier + Legal pages + Terms-Acceptance-Flow, est. ~4h focused work).
+Open, blocks specific sprints:
+- [ ] **Alchemy API key** (free, alchemy.com) → `ALCHEMY_API_KEY` — blocks Sprint 3.2/3.3 live test
+- [ ] **CoinGecko demo key** (free, coingecko.com/en/api) → `COINGECKO_API_KEY` — blocks Sprint 3.3 live test
+- [ ] **Stripe Tax** activation (Settings → Tax → Activate → registration Austria/VAT) — blocks Sprint 2.7 Stripe
+- [ ] Helius (Solana) — Sprint 4; Reservoir (NFT) — Sprint 4; Whale Alert + Twitter/X + Resend + Anthropic — Sprint 8
 
 ## Sprint roadmap
 
 | # | Scope | Status |
 |---|-------|--------|
-| 1 | Foundation — monorepo, NestJS skeleton, Next.js skeleton, Prisma schema, docker-compose, `/health` | ✅ verified |
-| 2 | Supabase Auth, Stripe (3 tiers + Tax), legal pages, terms-acceptance | pending vendor setup |
-| 3 | EVM wallet connector (Alchemy, 6 chains), portfolio view + ProviderRouter | pending |
+| 1 | Foundation — monorepo, NestJS skeleton, Next.js skeleton, Prisma schema, docker-compose, `/health` | ✅ merged |
+| 2 | Supabase Auth, legal pages, terms-acceptance, static pricing (2.7 Stripe deferred — Tax) | ✅ merged (6/7) |
+| 3 | EVM wallet connector (Alchemy, 6 chains), portfolio view + ProviderRouter | 🔨 in progress (3.1 done) |
 | 4 | Solana (Helius) + DeFi (Zerion) + NFT layer (Reservoir) | pending |
 | 5 | CEX `SafeExchangeClient` + order-block + read-only validation | pending |
 | 6 | Austrian tax engine (FIFO, KESt cutoffs, FinanzOnline export) | pending |

@@ -6,6 +6,8 @@ import { PrismaModule } from './common/prisma/prisma.module';
 import { RedisModule } from './common/redis/redis.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
+import { WalletModule } from './wallets/wallet.module';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { AuthModule } from './auth/auth.module';
     RedisModule,
     HealthModule,
     AuthModule,
+    PortfolioModule,
+    WalletModule,
   ],
   providers: [
     // Replaces the deprecated `setupNestErrorHandler` in main.ts. Catches
